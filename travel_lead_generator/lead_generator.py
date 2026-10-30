@@ -1,5 +1,5 @@
 """
-Automatic lead generation for a travel website.
+Automatic lead generation for Sawari Travel (https://sawaritravel.com).
 
 Runs a small web server (standard library only, no pip install needed) that:
   1. Shows a "Plan my trip" enquiry form visitors can fill in
@@ -12,6 +12,10 @@ Runs a small web server (standard library only, no pip install needed) that:
 Run:   python lead_generator.py
 Open:  http://localhost:8000          (enquiry form)
        http://localhost:8000/admin    (dashboard, login admin / ADMIN_PASSWORD)
+
+On the live site, host this at https://leads.sawaritravel.com and add one line
+to every page of sawaritravel.com to get a "Plan my trip" popup form:
+    <script src="https://leads.sawaritravel.com/widget.js" defer></script>
 """
 
 import base64
@@ -24,6 +28,7 @@ import re
 import smtplib
 import sqlite3
 from datetime import date, datetime, timedelta
+from pathlib import Path
 from email.message import EmailMessage
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.error import HTTPError, URLError
@@ -32,7 +37,12 @@ from urllib.request import Request, urlopen
 
 # ---------------------------------------------------------------- settings
 # Change these with environment variables instead of editing the code.
-SITE_NAME = os.environ.get("SITE_NAME", "My Travel Website")
+SITE_NAME = os.environ.get("SITE_NAME", "Sawari Travel")
+SITE_URL = os.environ.get("SITE_URL", "https://sawaritravel.com")
+# Websites allowed to send leads to /api/leads from the browser (the widget).
+ALLOWED_ORIGINS = os.environ.get(
+    "ALLOWED_ORIGINS", "https://sawaritravel.com,https://www.sawaritravel.com").split(",")
+OWN_DOMAINS = {urlparse(o.strip()).netloc for o in ALLOWED_ORIGINS + [SITE_URL]}
 PORT = int(os.environ.get("PORT", "8000"))
 DB_FILE = os.environ.get("LEADS_DB", "leads.db")
 ADMIN_USER = os.environ.get("ADMIN_USER", "admin")
@@ -288,7 +298,7 @@ def notify(lead_id, lead):
         f"Thank you for your interest in travelling to {lead['destination']}! "
         f"Our travel expert will call you on {lead['phone']} within 24 hours "
         f"with a personalised itinerary and the best price.\n\n"
-        f"Your reference number is #{lead_id}.\n\nHappy travels,\nTeam {SITE_NAME}\n")
+        f"Your reference number is #{lead_id}.\n\nHappy travels,\nTeam {SITE_NAME}\n{SITE_URL}\n")
     send_email(
         SALES_EMAIL,
         f"[{lead['rating']} LEAD #{lead_id}] {lead['name']} -> {lead['destination']}",
@@ -365,7 +375,7 @@ def form_page(errors=(), values=None, source=""):
 def thank_you_page(lead_id):
     return page("Thank you", f"""
 <header><h1>Thank you!</h1><p>Your enquiry reference is #{lead_id}. Our travel expert will contact you within 24 hours.</p></header>
-<main><div class="card"><p>We've also sent a confirmation to your email. <a href="/">Make another enquiry</a></p></div></main>""")
+<main><div class="card"><p>We've also sent a confirmation to your email. <a href="{SITE_URL}">Back to {html.escape(SITE_NAME)}</a></p></div></main>""")
 
 
 def admin_page():
@@ -389,6 +399,12 @@ def admin_page():
 {rows or '<tr><td colspan=7>No leads yet.</td></tr>'}</table></div></main>""")
 
 
+def widget_js():
+    config = {"siteName": SITE_NAME, "budgets": list(BUDGETS), "tripTypes": TRIP_TYPES}
+    template = (Path(__file__).parent / "widget.js").read_text(encoding="utf-8")
+    return template.replace("__CONFIG__", json.dumps(config))
+
+
 def leads_csv():
     out = io.StringIO()
     leads = all_leads()
@@ -410,6 +426,14 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header(key, value)
         self.end_headers()
         self.wfile.write(data)
+
+    def cors_headers(self):
+        origin = self.headers.get("Origin", "")
+        if origin not in ALLOWED_ORIGINS:
+            return {}
+        return {"Access-Control-Allow-Origin": origin, "Vary": "Origin",
+                "Access-Control-Allow-Methods": "POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type"}
 
     def redirect(self, location):
         self.send("", 303, headers={"Location": location})
@@ -436,9 +460,13 @@ class Handler(BaseHTTPRequestHandler):
         query = parse_qs(url.query)
         if url.path == "/":
             # Remember where the visitor came from (Google ads, Instagram, ...)
+            referrer = urlparse(self.headers.get("Referer", "")).netloc
             source = (query.get("utm_source", [""])[0] or query.get("ref", [""])[0]
-                      or urlparse(self.headers.get("Referer", "")).netloc)
+                      or ("" if referrer in OWN_DOMAINS else referrer))
             self.send(form_page(source=source))
+        elif url.path == "/widget.js":
+            self.send(widget_js(), content_type="application/javascript; charset=utf-8",
+                      headers={"Cache-Control": "public, max-age=3600"})
         elif url.path == "/thank-you":
             self.send(thank_you_page(html.escape(query.get("id", [""])[0])))
         elif url.path == "/admin" and self.is_admin():
@@ -448,6 +476,9 @@ class Handler(BaseHTTPRequestHandler):
                       headers={"Content-Disposition": "attachment; filename=leads.csv"})
         elif not url.path.startswith("/admin"):
             self.send(page("Not found", "<main><h1>Page not found</h1></main>"), 404)
+
+    def do_OPTIONS(self):  # browser "preflight" check before the widget posts a lead
+        self.send("", 204, "text/plain", self.cors_headers())
 
     def do_POST(self):
         path = urlparse(self.path).path
@@ -460,10 +491,10 @@ class Handler(BaseHTTPRequestHandler):
             else:
                 self.redirect(f"/thank-you?id={lead_id}")
         elif path == "/api/leads":
-            # For a form/chat widget on another page of your site: POST JSON here.
+            # Used by widget.js on sawaritravel.com, or any other form: POST JSON here.
             lead_id, errors = capture_lead(self.read_form())
             self.send(json.dumps({"ok": not errors, "id": lead_id, "errors": errors}),
-                      400 if errors else 201, "application/json")
+                      400 if errors else 201, "application/json", self.cors_headers())
         elif path == "/admin/status" and self.is_admin():
             form = self.read_form()
             lead_id = form.get("id", [""])[0]
@@ -481,4 +512,5 @@ if __name__ == "__main__":
         print("WARNING: set the ADMIN_PASSWORD environment variable before going live.")
     print(f"Enquiry form:  http://localhost:{PORT}")
     print(f"Dashboard:     http://localhost:{PORT}/admin  (user: {ADMIN_USER})")
+    print(f"Widget:        http://localhost:{PORT}/widget.js  (add to {SITE_URL})")
     ThreadingHTTPServer(("", PORT), Handler).serve_forever()
