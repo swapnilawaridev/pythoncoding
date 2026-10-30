@@ -2,62 +2,86 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Free Trip Cost Calculator &amp; Itinerary Planner | Sawari Travel</title>
-<meta name="description" content="Find out how much your holiday will cost in 30 seconds. Free trip cost calculator and day-by-day itinerary for Goa, Kerala, Kashmir, Dubai, Thailand, Bali and more.">
-<!-- Preview shown when the link is shared on WhatsApp, Facebook, Instagram -->
+<title>Trip Cost Calculator &amp; Free Itinerary | Sawari Travel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How much will your holiday cost? Free trip cost calculator and day-by-day itinerary for Goa, Kerala, Kashmir, Dubai, Thailand, Bali and more. By Sawari Travel.">
 <meta property="og:title" content="How much will your next holiday cost? Find out in 30 seconds">
 <meta property="og:description" content="Free trip cost calculator + day-by-day itinerary by Sawari Travel.">
-<meta property="og:url" content="https://sawaritravel.com/trip-planner">
-<meta property="og:type" content="website">
+<meta property="og:image" content="https://sawaritravel.com/assets/sawari-logo.jpg">
+<meta property="og:url" content="https://sawaritravel.com/trip-planner.html">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="canonical" href="https://sawaritravel.com/trip-planner.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@1,600&amp;display=swap">
 <style>
-  :root{--brand:#f28c28;--brand-dark:#d9731a;--ink:#1d2b36;--muted:#5d6d7e;--line:#dbe3ea;--bg:#f2f6f9;--card:#fff;--sea:#0b6e8a}
-  *{box-sizing:border-box}
-  body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
-  header{background:linear-gradient(120deg,#0b6e8a,#1aa39a);color:#fff;padding:40px 16px 64px;text-align:center}
-  header h1{margin:0 0 8px;font-size:clamp(26px,5vw,38px);line-height:1.2}
-  header p{margin:0 auto;max-width:560px;opacity:.92}
-  main{max-width:820px;margin:-40px auto 48px;padding:0 16px}
-  .card{background:var(--card);border-radius:14px;padding:24px;box-shadow:0 6px 24px #0b2a3a14;margin-bottom:18px}
-  h2{margin:0 0 16px;font-size:20px}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-  .full{grid-column:1/-1}
-  label{display:block;font-size:14px;font-weight:600}
-  input,select{width:100%;margin-top:5px;padding:11px;border:1px solid #c7d3dc;border-radius:9px;font:inherit;background:#fff;color:inherit}
-  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:5px}
-  .seg button{padding:10px 6px;border:1px solid #c7d3dc;border-radius:9px;background:#fff;font:600 14px system-ui,sans-serif;color:var(--ink);cursor:pointer}
-  .seg button[aria-pressed="true"]{border-color:var(--sea);background:#e6f4f6;color:var(--sea)}
-  .check{display:flex;gap:8px;align-items:center;font-weight:500}
-  .check input{width:auto;margin:0}
-  .btn{display:block;width:100%;border:0;border-radius:10px;padding:15px;background:var(--brand);color:#fff;font:700 17px system-ui,sans-serif;cursor:pointer;text-align:center;text-decoration:none}
-  .btn:hover{background:var(--brand-dark)}
-  .btn[disabled]{opacity:.6;cursor:wait}
-  .btn.wa{background:#1f9d55}
-  .btn.ghost{background:#fff;color:var(--sea);border:1px solid var(--sea)}
-  .price{font-size:clamp(28px,6vw,40px);font-weight:800;color:var(--sea);margin:2px 0}
-  .muted{color:var(--muted);font-size:14px}
-  .facts{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
-  .facts span{background:#eef3f7;border-radius:20px;padding:5px 12px;font-size:14px}
-  ol.days{padding:0;margin:0;list-style:none;counter-reset:d}
-  ol.days li{counter-increment:d;position:relative;padding:12px 0 12px 64px;border-top:1px solid var(--line)}
-  ol.days li::before{content:"Day " counter(d);position:absolute;left:0;top:12px;font-weight:700;color:var(--brand-dark);font-size:14px}
-  .locked{position:relative;max-height:150px;overflow:hidden}
-  .locked::after{content:"";position:absolute;inset:40px 0 0;background:linear-gradient(transparent,var(--card) 85%)}
-  .err{background:#fde8e8;color:#9b1c1c;padding:12px;border-radius:9px;margin-bottom:14px}
-  .hidden{display:none !important}
-  .trust{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:10px;color:var(--muted);font-size:14px}
-  .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-  @media(max-width:600px){.grid,.actions{grid-template-columns:1fr}.card{padding:18px}}
-  @media print{header,#planner,#unlock,.actions{display:none}main{margin:0}.card{box-shadow:none}}
+body{margin:0}
+a{color:#052856}a:hover{color:#B45309}
+*{box-sizing:border-box}
+img{max-width:100%}
+.tp{max-width:880px;margin:0 auto;padding:48px 24px 72px}
+.eyebrow{color:#B45309;font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px}
+.tp h1{font-family:Montserrat,Inter,sans-serif;font-weight:800;font-size:clamp(2rem,4.5vw,3rem);line-height:1.1;margin:0 0 14px}
+.tp h1 em{font-family:"Playfair Display",serif;font-weight:600;color:#B45309}
+.lead{font-size:18px;color:#4B5563;margin:0 0 32px;max-width:620px}
+.card{background:#fff;border:1px solid #E5E7EB;border-radius:20px;padding:28px;margin-bottom:20px;box-shadow:0 10px 30px rgba(5,40,86,.06)}
+.card h2{font-family:Montserrat,Inter,sans-serif;font-size:22px;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.full{grid-column:1/-1}
+label{display:block;font-size:14px;font-weight:600}
+input,select{width:100%;margin-top:6px;padding:12px 14px;border:1.5px solid #D1D5DB;border-radius:12px;font:inherit;font-size:16px;background:#fff;color:#052856}
+input:focus,select:focus{outline:none;border-color:#F39A1E;box-shadow:0 0 0 3px rgba(243,154,30,.25)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.seg button{padding:12px 6px;border:1.5px solid #D1D5DB;border-radius:12px;background:#fff;font:600 15px Inter,sans-serif;color:#052856;cursor:pointer}
+.seg button[aria-pressed="true"]{border-color:#052856;background:#052856;color:#fff}
+.check{display:flex;gap:10px;align-items:center;font-weight:500}
+.check input{width:20px;height:20px;margin:0;accent-color:#F39A1E}
+.btn{display:flex;justify-content:center;align-items:center;gap:10px;width:100%;border:0;border-radius:999px;padding:16px 26px;background:#F39A1E;color:#052856;font:700 17px Inter,sans-serif;cursor:pointer;text-decoration:none}
+.btn:hover{background:#E0890F;color:#052856}
+.btn[disabled]{opacity:.6;cursor:wait}
+.btn.wa{background:#25D366}
+.btn.ghost{background:#fff;border:1.5px solid #052856}
+.result{background:#052856;color:#fff;border:0}
+.result .muted{color:#C7D2E0}
+.price{font-family:Montserrat,Inter,sans-serif;font-size:clamp(2rem,6vw,2.8rem);font-weight:800;color:#F39A1E;margin:4px 0}
+.muted{color:#4B5563;font-size:15px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+.facts span{background:rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;font-size:14px}
+ol.days{padding:0;margin:0;list-style:none;counter-reset:d}
+ol.days li{counter-increment:d;position:relative;padding:14px 0 14px 72px;border-top:1px solid #E5E7EB}
+ol.days li::before{content:"Day " counter(d);position:absolute;left:0;top:14px;font-weight:700;color:#B45309;font-size:14px}
+.locked{position:relative;max-height:160px;overflow:hidden}
+.locked::after{content:"";position:absolute;inset:50px 0 0;background:linear-gradient(rgba(255,255,255,0),#fff 85%)}
+.err{background:#FEF2F2;color:#991B1B;padding:12px 14px;border-radius:12px;margin-bottom:16px}
+.hidden{display:none !important}
+.trust{display:flex;gap:8px 20px;flex-wrap:wrap;justify-content:center;margin-top:14px;color:#4B5563;font-size:14px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+@media(max-width:640px){.grid,.actions{grid-template-columns:1fr}.card{padding:20px}.tp{padding-top:32px}}
+@media print{header,footer,#planner,#unlock,.actions,body>div>a[aria-label]{display:none !important}.card{box-shadow:none;border:0}}
 </style>
 </head>
 <body>
-<header>
-  <h1>How much will your trip cost?</h1>
-  <p>Get an instant cost estimate and a free day-by-day itinerary from Sawari Travel's experts. Takes 30 seconds.</p>
+<div style="font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif; color: #052856; background: #FFFFFF; min-height: 100vh">
+<header style="border-bottom: 1px solid #E5E7EB; background: #FFFFFF">
+<nav aria-label="Main" style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="index.html" aria-label="Sawari Travel home" style="display: flex; align-items: center; text-decoration: none">
+<img src="assets/sawari-logo-wide.png" alt="Sawari Travel" style="height: 52px; width: auto; display: block">
+</a>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 15px; font-weight: 500">
+<a href="index.html" style="text-decoration: none; padding: 12px 0">Home</a>
+<a href="services.html" style="text-decoration: none; padding: 12px 0">Services</a>
+<a href="index.html#why" style="text-decoration: none; padding: 12px 0">Why Sawari</a>
+<a href="trip-planner.html" aria-current="page" style="text-decoration: none; padding: 12px 0; border-bottom: 2px solid #F39A1E">Trip Cost</a>
+<a href="contact.html" style="text-decoration: none; padding: 12px 0">Contact</a>
+<a href="tel:+919730749747" style="text-decoration: none; background: #F39A1E; color: #052856; padding: 12px 20px; border-radius: 999px; font-weight: 700; display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>97307 49747</a>
+</div>
+</nav>
 </header>
 
-<main>
+<main class="tp">
+  <p class="eyebrow">Trip cost calculator</p>
+  <h1>How much will your trip <em>really</em> cost?</h1>
+  <p class="lead">Get an instant estimate and a free day-by-day itinerary from Sawari Travel's experts. It takes 30 seconds.</p>
+
   <section class="card" id="planner">
     <h2>1. Tell us about your trip</h2>
     <div class="grid">
@@ -88,20 +112,20 @@
     </div>
   </section>
 
-  <section class="card" id="result" aria-live="polite">
+  <section class="card result" id="result" aria-live="polite">
     <div class="muted" id="r-title"></div>
     <div class="price" id="r-total"></div>
     <div class="muted" id="r-per"></div>
     <div class="facts" id="r-facts"></div>
-    <p class="muted" style="margin:10px 0 0">Estimates are for planning only. Your final price depends on dates, hotels and availability. We'll send you an exact quote.</p>
+    <p class="muted" style="margin:12px 0 0;font-size:14px">Estimates are for planning only. Your final price depends on dates, hotels and availability. We'll send you an exact quote.</p>
   </section>
 
   <section class="card">
     <h2 id="plan-title">Your day-by-day plan</h2>
     <div id="plan" class="locked"><ol class="days" id="days-list"></ol></div>
     <div class="actions hidden" id="after">
-      <a class="btn wa" id="wa-btn" target="_blank" rel="noopener">Chat on WhatsApp</a>
-      <button class="btn ghost" type="button" onclick="window.print()">Save / print plan</button>
+      <a class="btn wa" id="wa-btn" target="_blank" rel="noopener">Get exact quote on WhatsApp</a>
+      <button class="btn ghost" type="button" id="print-btn">Save / print plan</button>
     </div>
   </section>
 
@@ -112,271 +136,42 @@
     <!-- Netlify Form: submissions appear under Forms > trip-plan, and trigger the lead-alert function -->
     <form name="trip-plan" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="lead-form" class="grid">
       <input type="hidden" name="form-name" value="trip-plan">
-      <input type="hidden" name="service" value="Tour Package (Trip Planner)">
+      <input type="hidden" name="service" value="Travel Planning / Holiday Package (Trip Cost Calculator)">
       <input type="hidden" name="destination">
       <input type="hidden" name="travel_date">
       <input type="hidden" name="message">
-      <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+      <p class="hidden"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
       <label>Your name<input name="name" autocomplete="name" required></label>
-      <label>WhatsApp / mobile number<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="10-digit mobile" required></label>
+      <label>Phone / WhatsApp<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="10-digit mobile" required></label>
       <label class="full">Email<input name="email" type="email" autocomplete="email" required></label>
       <button class="btn full" type="submit" id="submit">Show my full itinerary</button>
     </form>
-    <div class="trust"><span>✔ No spam</span><span>✔ Reply within 24 hours</span><span>✔ Customised by local experts</span></div>
+    <div class="trust"><span>✔ No spam</span><span>✔ Reply within 24 hours</span><span>✔ Planned by travel experts</span></div>
   </section>
 </main>
-
-<script>
-// Sawari Travel's WhatsApp number (country code, no "+"). Leave "" to hide the button.
-var SAWARI_WHATSAPP = "";
-
-// Rough per-person costs in INR. day = stay + food + local transport + sightseeing per day,
-// for Budget / Comfort / Luxury. travel = return flight or train from a major Indian city
-// (plus visa where needed). Update these with your own package prices.
-var DESTINATIONS = [
-  {name: "Goa", day: [2500, 4500, 9000], travel: 7000, ideal: 5, best: "Nov - Feb", plan: [
-    "Arrive, check in near Calangute / Baga, sunset at the beach",
-    "North Goa: Fort Aguada, Anjuna, Vagator and Chapora Fort",
-    "Water sports at Baga, evening at a beach shack",
-    "South Goa: Old Goa churches, Colva and Palolem beaches",
-    "Dudhsagar waterfall and spice plantation",
-    "Cruise on the Mandovi river, shopping at Mapusa market"]},
-  {name: "Kerala", day: [2800, 5000, 10000], travel: 9000, ideal: 6, best: "Sep - Mar", plan: [
-    "Arrive in Kochi: Fort Kochi, Chinese fishing nets, Kathakali show",
-    "Drive to Munnar, waterfalls on the way",
-    "Munnar tea gardens, Eravikulam National Park, Mattupetty Dam",
-    "Thekkady: spice plantation and Periyar boat ride",
-    "Alleppey houseboat stay on the backwaters",
-    "Kovalam / Varkala beach",
-    "Ayurvedic massage and departure"]},
-  {name: "Kashmir", day: [3000, 5500, 11000], travel: 10000, ideal: 6, best: "Mar - Oct", plan: [
-    "Arrive in Srinagar, shikara ride on Dal Lake, houseboat stay",
-    "Mughal Gardens: Nishat, Shalimar, Chashme Shahi",
-    "Day trip to Gulmarg, Gondola cable car",
-    "Pahalgam: Betaab Valley and Aru Valley",
-    "Sonamarg and Thajiwas Glacier",
-    "Local markets of Srinagar, departure"]},
-  {name: "Manali & Shimla", day: [2200, 4000, 8000], travel: 6000, ideal: 6, best: "Mar - Jun, Dec - Jan", plan: [
-    "Arrive in Shimla, the Mall Road and the Ridge",
-    "Kufri and Chail day trip",
-    "Drive to Manali via Kullu, river rafting",
-    "Solang Valley adventure activities",
-    "Atal Tunnel and Sissu / Rohtang Pass (when open)",
-    "Hadimba Temple, Old Manali cafes, Vashisht hot springs"]},
-  {name: "Rajasthan", day: [2500, 5000, 12000], travel: 7000, ideal: 7, best: "Oct - Mar", plan: [
-    "Jaipur: Amber Fort, Hawa Mahal, City Palace",
-    "Jaipur bazaars, drive to Pushkar",
-    "Drive to Jodhpur, Mehrangarh Fort",
-    "Jaisalmer Fort and havelis",
-    "Sam sand dunes, camel safari, desert camp night",
-    "Drive to Udaipur",
-    "Udaipur: City Palace, Lake Pichola boat ride"]},
-  {name: "Ladakh", day: [3500, 6000, 11000], travel: 12000, ideal: 7, best: "May - Sep", plan: [
-    "Arrive in Leh and rest to get used to the altitude",
-    "Leh Palace, Shanti Stupa, Leh market",
-    "Sham Valley: Magnetic Hill, Gurudwara Pathar Sahib",
-    "Drive over Khardung La to Nubra Valley, Bactrian camel ride",
-    "Nubra to Pangong Lake via Shyok",
-    "Pangong Lake sunrise, back to Leh",
-    "Monasteries: Thiksey and Hemis"]},
-  {name: "Andaman", day: [3500, 6500, 12000], travel: 15000, ideal: 6, best: "Oct - May", plan: [
-    "Arrive in Port Blair, Cellular Jail light and sound show",
-    "Ferry to Havelock, Radhanagar Beach sunset",
-    "Scuba diving / snorkelling at Elephant Beach",
-    "Neil Island: Bharatpur and Laxmanpur beaches",
-    "Back to Port Blair, Ross Island and North Bay",
-    "Shopping and departure"]},
-  {name: "Sikkim & Darjeeling", day: [2500, 4500, 8500], travel: 10000, ideal: 7, best: "Mar - May, Oct - Dec", plan: [
-    "Arrive in Bagdogra, drive to Gangtok",
-    "Tsomgo Lake and Baba Mandir",
-    "Gangtok sightseeing: Rumtek Monastery, MG Marg",
-    "Drive to Darjeeling",
-    "Tiger Hill sunrise over Kanchenjunga, toy train",
-    "Tea gardens and Peace Pagoda",
-    "Mirik Lake, departure"]},
-  {name: "Dubai", day: [6000, 10000, 20000], travel: 30000, ideal: 5, best: "Nov - Mar", plan: [
-    "Arrive, Dhow cruise dinner at Dubai Marina",
-    "City tour, Burj Khalifa observation deck, Dubai Mall fountain show",
-    "Desert safari with dune bashing and BBQ dinner",
-    "Abu Dhabi day trip: Sheikh Zayed Mosque, Ferrari World",
-    "Miracle Garden / Global Village, gold souk shopping"]},
-  {name: "Thailand", day: [3500, 6500, 13000], travel: 22000, ideal: 6, best: "Nov - Apr", plan: [
-    "Arrive in Bangkok, evening at a floating market or night market",
-    "Bangkok temples: Grand Palace, Wat Arun, Wat Pho",
-    "Fly to Phuket, Patong beach",
-    "Phi Phi Islands speedboat tour",
-    "James Bond Island / Phang Nga Bay",
-    "Big Buddha, Old Phuket town, departure"]},
-  {name: "Bali", day: [4000, 7000, 15000], travel: 35000, ideal: 6, best: "Apr - Oct", plan: [
-    "Arrive, check in at Seminyak or Kuta, beach sunset",
-    "Ubud: Tegallalang rice terraces, Monkey Forest, Bali swing",
-    "Kintamani volcano view and coffee plantation",
-    "Nusa Penida island day trip",
-    "Tanah Lot and Uluwatu temples, Kecak fire dance",
-    "Spa day and shopping"]},
-  {name: "Singapore", day: [7000, 11000, 20000], travel: 28000, ideal: 5, best: "All year", plan: [
-    "Arrive, Gardens by the Bay light show, Marina Bay Sands",
-    "Sentosa Island: Universal Studios",
-    "Sentosa: S.E.A. Aquarium, Wings of Time",
-    "Night Safari, Chinatown and Little India",
-    "Orchard Road shopping, departure"]},
-  {name: "Maldives", day: [9000, 18000, 40000], travel: 25000, ideal: 4, best: "Nov - Apr", plan: [
-    "Arrive in Male, speedboat or seaplane to your resort",
-    "Snorkelling on the house reef, sunset cruise",
-    "Island hopping and sandbank picnic",
-    "Spa and water sports, departure"]},
-  {name: "Vietnam", day: [3500, 6000, 12000], travel: 30000, ideal: 7, best: "Nov - Apr", plan: [
-    "Arrive in Hanoi, Old Quarter and water puppet show",
-    "Ha Long Bay overnight cruise",
-    "Back to Hanoi, fly to Da Nang",
-    "Ba Na Hills and the Golden Bridge",
-    "Hoi An ancient town, lantern evening",
-    "Fly to Ho Chi Minh City, Cu Chi Tunnels",
-    "Mekong Delta day trip"]}
-];
-var STYLES = ["Budget", "Comfort", "Luxury"];
-var CHILD_FACTOR = 0.6;
-
-var $ = function (id) { return document.getElementById(id); };
-var inr = function (n) { return "₹" + (Math.round(n / 500) * 500).toLocaleString("en-IN"); };
-var style = 1;
-var unlocked = false;
-
-DESTINATIONS.forEach(function (d, i) {
-  var o = document.createElement("option");
-  o.value = i;
-  o.textContent = d.name;
-  $("dest").appendChild(o);
-});
-var next = new Date();
-next.setMonth(next.getMonth() + 1);
-$("month").value = next.toISOString().slice(0, 7);
-$("month").min = new Date().toISOString().slice(0, 7);
-
-// Pre-select from a link like /trip-planner?destination=Kerala (use it in your ads)
-var wanted = new URLSearchParams(location.search).get("destination");
-DESTINATIONS.forEach(function (d, i) {
-  if (wanted && d.name.toLowerCase().indexOf(wanted.toLowerCase()) === 0) {
-    $("dest").value = i;
-    $("days").value = d.ideal;
-  }
-});
-
-function clamp(v, lo, hi, def) {
-  v = parseInt(v, 10);
-  return isNaN(v) ? def : Math.min(hi, Math.max(lo, v));
-}
-
-function trip() {
-  var d = DESTINATIONS[$("dest").value];
-  var days = clamp($("days").value, 2, 21, d.ideal);
-  var adults = clamp($("adults").value, 1, 50, 2);
-  var kids = clamp($("kids").value, 0, 20, 0);
-  var people = adults + kids * CHILD_FACTOR;
-  var perAdult = d.day[style] * days + ($("travel").checked ? d.travel : 0);
-  var total = perAdult * people;
-  var plan = d.plan.slice(0, days - 1);
-  while (plan.length < days - 1) plan.push("Free day: relax, shop or add an optional activity");
-  plan.push("Check out and depart with great memories");
-  return {d: d, days: days, adults: adults, kids: kids, perAdult: perAdult,
-          low: total * 0.9, high: total * 1.15, plan: plan, month: $("month").value};
-}
-
-function render() {
-  var t = trip();
-  var who = t.adults + " adult" + (t.adults > 1 ? "s" : "") + (t.kids ? ", " + t.kids + " child" + (t.kids > 1 ? "ren" : "") : "");
-  $("r-title").textContent = "Estimated cost: " + t.d.name + ", " + t.days + " days, " + who;
-  $("r-total").textContent = inr(t.low) + " – " + inr(t.high);
-  $("r-per").textContent = "About " + inr(t.perAdult) + " per adult, " + STYLES[style].toLowerCase() + " stay" +
-    ($("travel").checked ? ", including return travel" : ", excluding travel to the destination");
-  var facts = ["Best time: " + t.d.best, "Ideal length: " + t.d.ideal + " days", STYLES[style] + " hotels"];
-  if (t.month) {
-    var m = new Date(t.month + "-01");
-    facts.unshift(m.toLocaleString("en-IN", {month: "long", year: "numeric"}));
-  }
-  $("r-facts").innerHTML = "";
-  facts.forEach(function (f) {
-    var s = document.createElement("span");
-    s.textContent = f;
-    $("r-facts").appendChild(s);
-  });
-  $("plan-title").textContent = "Your " + t.days + "-day " + t.d.name + " plan";
-  $("days-list").innerHTML = "";
-  t.plan.forEach(function (p) {
-    var li = document.createElement("li");
-    li.textContent = p;
-    $("days-list").appendChild(li);
-  });
-  if (unlocked) updateWhatsApp();
-}
-
-function updateWhatsApp() {
-  if (!SAWARI_WHATSAPP) { $("wa-btn").classList.add("hidden"); return; }
-  var t = trip();
-  var text = "Hi Sawari Travel, I'd like a quote for " + t.d.name + ", " + t.days + " days, " + t.adults +
-    " adults" + (t.kids ? " + " + t.kids + " children" : "") + (t.month ? ", " + t.month : "") +
-    " (" + STYLES[style] + "). My estimate was " + inr(t.low) + " – " + inr(t.high) + ".";
-  $("wa-btn").href = "https://wa.me/" + SAWARI_WHATSAPP + "?text=" + encodeURIComponent(text);
-}
-
-document.querySelectorAll(".seg button").forEach(function (b) {
-  b.onclick = function () {
-    style = +b.dataset.style;
-    document.querySelectorAll(".seg button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
-    render();
-  };
-});
-$("dest").onchange = function () { $("days").value = DESTINATIONS[this.value].ideal; render(); };
-["days", "adults", "kids", "month", "travel"].forEach(function (id) { $(id).oninput = render; });
-
-$("lead-form").onsubmit = function (e) {
-  e.preventDefault();
-  var form = e.target;
-  var err = $("err");
-  var phone = form.phone.value.replace(/[\s()-]/g, "").replace(/^(\+?91|0)(?=[6-9]\d{9}$)/, "");
-  if (!/^[6-9]\d{9}$/.test(phone)) {
-    err.textContent = "Please enter a valid 10-digit mobile number.";
-    err.classList.remove("hidden");
-    form.phone.focus();
-    return;
-  }
-  err.classList.add("hidden");
-  var t = trip();
-  form.phone.value = phone;
-  form.destination.value = t.d.name;
-  form.travel_date.value = t.month ? t.month + "-01" : "";
-  form.message.value = "Trip planner: " + t.days + " days, " + t.adults + " adult" + (t.adults > 1 ? "s" : "") +
-    (t.kids ? ", " + t.kids + " child" + (t.kids > 1 ? "ren" : "") : "") + ", " +
-    STYLES[style] + ", " + ($("travel").checked ? "with" : "without") + " travel. Estimate " +
-    inr(t.low) + " - " + inr(t.high) + "." + (location.search ? " Link: " + location.search : "");
-  $("submit").disabled = true;
-  $("submit").textContent = "Sending...";
-  fetch("/", {
-    method: "POST",
-    headers: {"Content-Type": "application/x-www-form-urlencoded"},
-    body: new URLSearchParams(new FormData(form)).toString()
-  }).then(function (r) {
-    if (!r.ok) throw new Error(r.status);
-    unlocked = true;
-    $("plan").classList.remove("locked");
-    var name = form.name.value;
-    $("unlock").innerHTML = "<h2></h2><p class='muted' style='margin:0'>Your full itinerary is above. " +
-      "A Sawari Travel expert will call you within 24 hours with an exact quote.</p>";
-    $("unlock").querySelector("h2").textContent = "Thank you, " + name + "!";
-    $("after").classList.remove("hidden");
-    updateWhatsApp();
-    if (window.gtag) gtag("event", "generate_lead", {destination: t.d.name});
-    if (window.fbq) fbq("track", "Lead");
-    $("plan-title").scrollIntoView({behavior: "smooth"});
-  }).catch(function () {
-    err.textContent = "Sorry, we couldn't send that. Please check your internet connection and try again.";
-    err.classList.remove("hidden");
-    $("submit").disabled = false;
-    $("submit").textContent = "Show my full itinerary";
-  });
-};
-
-render();
-</script>
+<footer style="border-top: 1px solid #E5E7EB">
+<div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 96px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; font-size: 14px; color: #4B5563">
+<div style="display: flex; flex-direction: column; gap: 8px"><img src="assets/sawari-logo-wide.png" alt="Sawari Travel" style="height: 40px; width: auto; display: block; align-self: flex-start"><span>Every Journey Begins with Sawari</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 24px">
+<a href="index.html" style="text-decoration: none; padding: 12px 0">Home</a>
+<a href="services.html" style="text-decoration: none; padding: 12px 0">Services</a>
+<a href="index.html#why" style="text-decoration: none; padding: 12px 0">Why Sawari</a>
+<a href="trip-planner.html" style="text-decoration: none; padding: 12px 0">Trip Cost</a>
+<a href="contact.html" style="text-decoration: none; padding: 12px 0">Contact</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<a href="tel:+919730749747" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>9730749747</a>
+<a href="mailto:contact@sawaritravel.com" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 7l-10 6L2 7"></path></svg>contact@sawaritravel.com</a>
+<a href="https://wa.me/919730749747?text=Hello%20Sawari%20Travel%2C%20I%E2%80%99d%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3zM9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.3-1.8-.9-.8.8c-1.1-.4-2-1.3-2.4-2.4l.8-.8-.9-1.8z"></path></svg>WhatsApp: 9730749747</a>
+<a href="https://www.facebook.com/share/1EuC4BGG5Z/" target="_blank" rel="noopener" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</a>
+<a href="https://www.instagram.com/sawari_travel" target="_blank" rel="noopener" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zM16 11.4A4 4 0 1 1 12.6 8 4 4 0 0 1 16 11.4zM17.5 6.5h.01"></path></svg>Instagram</a>
+<a href="https://www.sawaritravel.com" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"></path></svg>www.sawaritravel.com</a>
+<span>© 2026 Sawari Travel</span>
+</div>
+</div>
+</footer>
+<a href="https://wa.me/919730749747?text=Hello%20Sawari%20Travel%2C%20I%E2%80%99d%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener" aria-label="Chat with Sawari Travel on WhatsApp" style="position: fixed; right: 20px; bottom: 20px; z-index: 50; display: flex; align-items: center; gap: 10px; background: #25D366; color: #052856; text-decoration: none; font-weight: 700; font-size: 15px; padding: 12px 20px 12px 14px; border-radius: 999px; box-shadow: 0 10px 24px rgba(5,40,86,0.25)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"></path><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.3-1.8-.9-.8.8c-1.1-.4-2-1.3-2.4-2.4l.8-.8-.9-1.8z"></path></svg>WhatsApp</a>
+</div>
+<script src="assets/trip-planner.js"></script>
 </body>
 </html>

@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 600" role="img" aria-label="Illustration of Sawari Travel services: passport with approved visa, business class boarding pass, hotel, travel insurance, luxury car, digital arrival card, 24/7 support and a beach picnic">
+<defs>
+<radialGradient id="bgG" cx="45%" cy="40%" r="65%"><stop offset="0" stop-color="#FFF7EA"/><stop offset="1" stop-color="#FBE0B8"/></radialGradient>
+<linearGradient id="globeG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EEF4FB"/><stop offset="1" stop-color="#C3D7EE"/></linearGradient>
+<linearGradient id="navyG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B3A7A"/><stop offset="1" stop-color="#03204A"/></linearGradient>
+<linearGradient id="orangeG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F8B04A"/><stop offset="1" stop-color="#EE8A12"/></linearGradient>
+<linearGradient id="trailG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0.95"/></linearGradient>
+<filter id="sh" x="-40%" y="-60%" width="180%" height="260%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#052856" flood-opacity="0.18"/></filter>
+<clipPath id="gc"><circle cx="330" cy="235" r="150"/></clipPath>
+</defs>
+<g transform="translate(62 12)">
+<circle cx="310" cy="265" r="235" fill="url(#bgG)"/>
+<circle cx="310" cy="265" r="235" fill="none" stroke="#F39A1E" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+<g clip-path="url(#gc)">
+<circle cx="330" cy="235" r="150" fill="url(#globeG)"/>
+<path d="M200 170c40-20 70 10 95-5s40-40 75-25 30 45 60 40 40 30 30 60-40 25-55 55-60 25-80 5-15-50-45-55-60-30-80-45z" fill="#A9C3E2"/>
+<path d="M390 330c20-10 45-5 55 10s-5 35-25 38-45-8-45-22 5-20 15-26z" fill="#A9C3E2"/>
+<path d="M230 110c15-8 35-6 42 4s-6 20-20 20-30-14-22-24z" fill="#A9C3E2"/>
+<g fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.8">
+<ellipse cx="330" cy="235" rx="60" ry="150"/><ellipse cx="330" cy="235" rx="115" ry="150"/>
+<path d="M180 235h300M195 165h270M195 305h270"/>
+</g>
+</g>
+<circle cx="290" cy="170" r="70" fill="#FFFFFF" opacity="0.25"/>
+<path d="M60 175 C 160 40, 380 20, 520 95" fill="none" stroke="#052856" stroke-width="3" stroke-dasharray="10 12" stroke-linecap="round"/>
+<path d="M380 62 C 420 62, 470 72, 490 86" fill="none" stroke="url(#trailG)" stroke-width="6" stroke-linecap="round"/>
+<g transform="translate(505 96) rotate(28)">
+<path d="M-34 0 L30 -6 C40 -6 46 -3 46 0 C46 3 40 6 30 6 L-34 0Z" fill="#052856"/>
+<path d="M-2 -4 L-22 -36 L-10 -36 L18 -4Z M-2 4 L-22 36 L-10 36 L18 4Z" fill="#052856"/>
+<path d="M-30 -2 L-40 -16 L-33 -16 L-20 -2Z M-30 2 L-40 16 L-33 16 L-20 2Z" fill="#052856"/>
+</g>
+<g fill="#FFFFFF"><ellipse cx="470" cy="190" rx="30" ry="12"/><ellipse cx="488" cy="181" rx="18" ry="12"/></g>
+<g transform="rotate(-9 175 330)" filter="url(#sh)">
+<rect x="95" y="215" width="165" height="225" rx="16" fill="url(#navyG)"/>
+<rect x="105" y="225" width="145" height="205" rx="10" fill="none" stroke="#F39A1E" stroke-width="1.5" opacity="0.6"/>
+<circle cx="177" cy="315" r="38" fill="none" stroke="#F39A1E" stroke-width="3"/>
+<ellipse cx="177" cy="315" rx="16" ry="38" fill="none" stroke="#F39A1E" stroke-width="2"/>
+<path d="M139 315h76M145 297h64M145 333h64" stroke="#F39A1E" stroke-width="2"/>
+<text x="177" y="262" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="17" letter-spacing="4" fill="#FFFFFF">PASSPORT</text>
+<text x="177" y="392" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="11" letter-spacing="3" fill="#F39A1E">SAWARI TRAVEL</text>
+</g>
+
+<g transform="translate(40 -40) rotate(-14 210 205)">
+<circle cx="210" cy="205" r="50" fill="#FFFFFF" fill-opacity="0.85" stroke="#C2410C" stroke-width="4"/>
+<circle cx="210" cy="205" r="41" fill="none" stroke="#C2410C" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="210" y="201" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="22" letter-spacing="2" fill="#C2410C">VISA</text>
+<text x="210" y="222" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="11" letter-spacing="1.5" fill="#C2410C">APPROVED</text>
+</g>
+
+<g transform="rotate(6 400 360)" filter="url(#sh)">
+<rect x="250" y="295" width="300" height="140" rx="16" fill="#FFFFFF"/>
+<path d="M250 311a16 16 0 0 1 16-16h268a16 16 0 0 1 16 16v20H250z" fill="url(#orangeG)"/>
+<path d="M512 313 l16 -2 c3 0 4 1 4 2 s-1 2 -4 2 l-16 -2z M520 311.5 l-5 -8 h3 l7 8z M520 314.5 l-5 8 h3 l7 -8z" fill="#052856"/>
+<text x="268" y="320" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="14" letter-spacing="2.5" fill="#052856">BOARDING PASS</text>
+<text x="268" y="350" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="1" fill="#4B5563">FROM</text>
+<text x="268" y="372" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="17" fill="#052856">Departure</text>
+<path d="M357 366 h22 M372 360 l8 6 l-8 6" fill="none" stroke="#F39A1E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="388" y="350" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="1" fill="#4B5563">TO</text>
+<text x="388" y="372" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="17" fill="#052856">Destination</text>
+<text x="268" y="398" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#4B5563">GATE</text>
+<text x="268" y="416" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="15" fill="#052856">A4</text>
+<text x="318" y="398" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#4B5563">SEAT</text>
+<text x="318" y="416" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="15" fill="#052856">12A</text>
+<text x="368" y="398" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#4B5563">CLASS</text>
+<text x="368" y="416" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="15" fill="#052856">BUSINESS</text>
+<path d="M492 340 v85" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4 5"/>
+<g fill="#052856"><rect x="502" y="350" width="3" height="66"/><rect x="508" y="350" width="1.5" height="66"/><rect x="512" y="350" width="4" height="66"/><rect x="519" y="350" width="1.5" height="66"/><rect x="523" y="350" width="3" height="66"/><rect x="529" y="350" width="2" height="66"/><rect x="534" y="350" width="3" height="66"/></g>
+</g>
+</g>
+<g transform="translate(-14 -42)">
+<g transform="translate(30 78)" filter="url(#sh)">
+<text x="50" y="-4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#F39A1E">★★★</text>
+<rect x="0" y="30" width="100" height="112" rx="6" fill="url(#navyG)"/>
+<rect x="-6" y="24" width="112" height="12" rx="4" fill="#1D4A80"/>
+<rect x="22" y="2" width="56" height="20" rx="5" fill="#F39A1E"/>
+<text x="50" y="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="11" letter-spacing="1.5" fill="#052856">HOTEL</text>
+<rect x="14" y="48" width="16" height="13" rx="2" fill="#FDE7B0"/><rect x="42" y="48" width="16" height="13" rx="2" fill="#FDE7B0"/><rect x="70" y="48" width="16" height="13" rx="2" fill="#FDE7B0"/><rect x="14" y="70" width="16" height="13" rx="2" fill="#FDE7B0"/><rect x="42" y="70" width="16" height="13" rx="2" fill="#FDE7B0"/><rect x="70" y="70" width="16" height="13" rx="2" fill="#FDE7B0"/><rect x="14" y="92" width="16" height="13" rx="2" fill="#FDE7B0"/><rect x="42" y="92" width="16" height="13" rx="2" fill="#FDE7B0"/><rect x="70" y="92" width="16" height="13" rx="2" fill="#FDE7B0"/>
+<rect x="38" y="114" width="24" height="28" rx="3" fill="#F39A1E"/>
+<circle cx="56" cy="129" r="1.8" fill="#052856"/>
+</g>
+<g transform="translate(30 78)"><circle cx="-4" cy="138" r="10" fill="#4C9A6A"/><circle cx="8" cy="141" r="8" fill="#3F8A5C"/><circle cx="104" cy="138" r="10" fill="#4C9A6A"/><circle cx="94" cy="141" r="8" fill="#3F8A5C"/></g>
+</g>
+<g transform="translate(-4 -12)">
+<g filter="url(#sh)">
+<circle cx="50" cy="298" r="36" fill="url(#navyG)"/>
+<path d="M36 312 l-6 12 l14 -7" fill="#052856"/>
+<g transform="translate(34 280) scale(1.35)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
+</g>
+<rect x="56" y="256" width="40" height="20" rx="10" fill="url(#orangeG)"/>
+<text x="76" y="270" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="11" fill="#052856">24/7</text>
+</g>
+</g>
+<g transform="translate(0 22)">
+<g filter="url(#sh)" transform="rotate(-6 70 440)">
+<rect x="18" y="365" width="104" height="160" rx="16" fill="url(#navyG)"/>
+<rect x="25" y="380" width="90" height="130" rx="8" fill="#FFFFFF"/>
+<rect x="25" y="380" width="90" height="42" rx="8" fill="#F39A1E"/>
+<text x="70" y="396" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="9" letter-spacing="0.6" fill="#052856">DIGITAL</text>
+<text x="70" y="411" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="9.5" letter-spacing="0.5" fill="#052856">ARRIVAL CARD</text>
+<g fill="#052856">
+<rect x="45" y="430" width="16" height="16"/><rect x="79" y="430" width="16" height="16"/><rect x="45" y="464" width="16" height="16"/>
+<rect x="49" y="434" width="8" height="8" fill="#FFFFFF"/><rect x="83" y="434" width="8" height="8" fill="#FFFFFF"/><rect x="49" y="468" width="8" height="8" fill="#FFFFFF"/>
+<rect x="65" y="430" width="5" height="5"/><rect x="72" y="438" width="5" height="5"/><rect x="65" y="446" width="5" height="5"/><rect x="65" y="456" width="5" height="5"/><rect x="74" y="452" width="5" height="5"/><rect x="83" y="452" width="5" height="5"/><rect x="90" y="458" width="5" height="5"/><rect x="65" y="468" width="5" height="5"/><rect x="74" y="474" width="5" height="5"/><rect x="83" y="466" width="5" height="5"/><rect x="90" y="474" width="5" height="5"/><rect x="79" y="480" width="5" height="5"/>
+</g>
+<text x="70" y="500" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="8.5" fill="#15803D">✓ SUBMITTED</text>
+</g>
+</g>
+<g transform="translate(595 150)">
+<g filter="url(#sh)">
+<path d="M45 0 L90 16 V50 C90 80 68 98 45 106 C22 98 0 80 0 50 V16 Z" fill="url(#navyG)"/>
+<path d="M45 9 L81 22 V50 C81 74 63 89 45 96 C27 89 9 74 9 50 V22 Z" fill="none" stroke="#F39A1E" stroke-width="2.5"/>
+<path d="M23 54 A22 22 0 0 1 67 54 Z" fill="#F39A1E"/>
+<path d="M30 54 A15 22 0 0 1 45 33 A15 22 0 0 1 60 54" fill="none" stroke="#052856" stroke-width="1.5"/>
+<path d="M45 54 V72 a5 5 0 0 1 -10 0" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+</g>
+</g>
+<g transform="translate(588 470) scale(1.15)">
+<g filter="url(#sh)">
+<path d="M2 34 C2 28 6 25 14 24 L28 22 C34 14 42 10 54 10 H64 C72 10 78 14 84 22 L90 24 C93 25 95 28 95 32 V37 C95 40 93 42 90 42 H6 C3 42 2 40 2 37 Z" fill="url(#navyG)"/>
+<path d="M32 22 C37 15 44 13 52 13 H56 V22 Z" fill="#B9D3EE"/>
+<path d="M60 13 H64 C70 13 75 16 79 22 H60 Z" fill="#B9D3EE"/>
+<path d="M36 20 L44 14" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"/>
+<path d="M58 22 V38" stroke="#021A3D" stroke-width="1.2"/>
+<path d="M8 31 H91" stroke="#F39A1E" stroke-width="1.6"/>
+<path d="M12 27 C 30 24, 70 24, 88 26.5" fill="none" stroke="#FFFFFF" stroke-width="1.6" opacity="0.4" stroke-linecap="round"/>
+<path d="M30 26 h4 M64 26 h4" stroke="#CBD5E1" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="87" y="26" width="7" height="3.5" rx="1.5" fill="#FFF3B0"/>
+<rect x="2.5" y="27" width="5" height="3.5" rx="1.5" fill="#E85D4A"/>
+<circle cx="22" cy="42" r="9.5" fill="#111827"/><circle cx="22" cy="42" r="5" fill="#E5E7EB"/><circle cx="22" cy="42" r="1.8" fill="#9CA3AF"/>
+<circle cx="74" cy="42" r="9.5" fill="#111827"/><circle cx="74" cy="42" r="5" fill="#E5E7EB"/><circle cx="74" cy="42" r="1.8" fill="#9CA3AF"/>
+</g>
+</g>
+<g transform="translate(62 40)">
+<g id="beach" filter="url(#sh)">
+<ellipse cx="282" cy="530" rx="132" ry="26" fill="#4FA3D6"/>
+<path d="M175 534 q12 -6 24 0 t24 0 M300 546 q12 -6 24 0 t24 0 M355 532 q10 -5 20 0" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+<ellipse cx="282" cy="520" rx="104" ry="17" fill="#F4D9A6"/>
+<g transform="translate(200 518) scale(0.8) translate(-200 -518)"><path d="M200 518 C 202 495, 208 470, 220 452" fill="none" stroke="#8B5E3C" stroke-width="7" stroke-linecap="round"/>
+<g fill="#3F8A5C">
+<path d="M220 452 C 200 440, 180 446, 170 460 C 188 452, 205 452, 220 452Z"/>
+<path d="M220 452 C 230 434, 252 432, 266 442 C 248 440, 234 444, 220 452Z"/>
+<path d="M220 452 C 214 432, 222 418, 236 412 C 228 426, 224 438, 220 452Z"/>
+<path d="M220 452 C 238 452, 256 462, 260 478 C 248 466, 234 458, 220 452Z"/>
+<path d="M220 452 C 204 456, 192 470, 192 484 C 200 470, 210 460, 220 452Z"/>
+</g>
+<circle cx="224" cy="456" r="4" fill="#6B4226"/><circle cx="216" cy="458" r="4" fill="#6B4226"/></g>
+<path d="M238 516 L262 500 L312 506 L290 524Z" fill="#E85D4A"/>
+<path d="M246 511 L296 517 M254 505 L304 511 M262 500 L290 524 M275 501 L301 520" stroke="#FFFFFF" stroke-width="2.5" opacity="0.85"/>
+<rect x="268" y="488" width="26" height="18" rx="3" fill="#B7793F"/>
+<path d="M271 488 a10 9 0 0 1 20 0" fill="none" stroke="#8B5E3C" stroke-width="3"/>
+<path d="M268 495 h26" stroke="#8B5E3C" stroke-width="1.5"/>
+<path d="M352 518 L352 470" stroke="#052856" stroke-width="3" stroke-linecap="round"/>
+<path d="M322 474 A30 22 0 0 1 382 474 Z" fill="#F39A1E"/>
+<path d="M342 474 A10 22 0 0 1 362 474 Z" fill="#FFFFFF"/>
+<path d="M322 474 q5 -4 10 0 q5 -4 10 0 q5 -4 10 0 q5 -4 10 0 q5 -4 10 0 q5 -4 10 0" fill="none" stroke="#F39A1E" stroke-width="2"/>
+</g>
+</g>
+<path d="M250 21 Q250 30 259 30 Q250 30 250 39 Q250 30 241 30 Q250 30 250 21Z" fill="#F39A1E"/>
+<path d="M680 323 Q680 330 687 330 Q680 330 680 337 Q680 330 673 330 Q680 330 680 323Z" fill="#F39A1E"/>
+</svg>
