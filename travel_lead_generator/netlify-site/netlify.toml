@@ -1,0 +1,6 @@
+# Netlify settings for sawaritravel.com
+[build]
+  # Your website files (index.html, images, css ...) go in the "site" folder.
+  publish = "site"
+  # Lead alert function: runs on every verified form submission.
+  functions = "netlify/functions"
