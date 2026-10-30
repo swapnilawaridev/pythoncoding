@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-head">
+  <h1>{{ company.name }}</h1>
+  <a class="btn" href="{{ url_for('request_new') }}">+ New travel request</a>
+</div>
+<div class="stats">
+  <div class="stat"><span>{{ requests | length }}</span>{{ 'Company trips' if g.user.role == 'company_admin' else 'My trips' }}</div>
+  {% if g.user.role == 'company_admin' %}<div class="stat"><span>{{ needs_action | length }}</span>Awaiting your decision</div>{% endif %}
+  <div class="stat"><span>{{ upcoming | length }}</span>Booked</div>
+  <div class="stat"><span>{{ spend | money }}</span>Booked spend</div>
+</div>
+
+{% if needs_action %}
+<div class="card highlight">
+  <h2>Awaiting your approval</h2>
+  {% with requests=needs_action, show_company=false %}{% include "_requests_table.html" %}{% endwith %}
+</div>
+{% endif %}
+
+<div class="card">
+  <h2>{{ 'All company trips' if g.user.role == 'company_admin' else 'My trips' }}</h2>
+  {% with show_company=false %}{% include "_requests_table.html" %}{% endwith %}
+</div>
+{% endblock %}

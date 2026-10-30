@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card form-card">
+  <h1>Company profile &amp; travel policy</h1>
+  <form method="post" class="grid2">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Company name<input name="name" value="{{ company.name }}" required></label>
+    <label>GST number<input name="gst_number" value="{{ company.gst_number or '' }}"></label>
+    <label class="span2">Billing address<textarea name="billing_address" rows="2">{{ company.billing_address or '' }}</textarea></label>
+    <label>Max budget per trip (₹, 0 = no limit)<input type="number" min="0" step="1" name="max_trip_budget" value="{{ company.max_trip_budget|int }}"></label>
+    <label>Highest allowed class
+      <select name="allowed_flight_class">
+        {% for c in TRAVEL_CLASSES %}<option value="{{ c }}" {% if company.allowed_flight_class == c %}selected{% endif %}>{{ c | label }}</option>{% endfor %}
+      </select>
+    </label>
+    <label class="span2 check"><input type="checkbox" name="approval_required" value="1" {% if company.approval_required %}checked{% endif %}>
+      Every employee trip needs travel-manager approval (if unticked, only out-of-policy trips need approval)</label>
+    <div class="span2"><button class="btn">Save</button></div>
+  </form>
+</div>
+{% endblock %}

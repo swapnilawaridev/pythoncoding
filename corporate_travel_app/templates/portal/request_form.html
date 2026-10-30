@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card form-card">
+  <h1>New travel request</h1>
+  <p class="muted">Company policy:
+    {{ 'max ' ~ (company.max_trip_budget | money) ~ ' per trip' if company.max_trip_budget else 'no budget limit' }},
+    up to {{ company.allowed_flight_class | label }} class.
+    {% if g.user.role != 'company_admin' and company.approval_required %}Your travel manager will approve this request.{% endif %}
+  </p>
+  <form method="post" class="grid2">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>What do you need?*
+      <select name="trip_type" required>
+        {% for key, name in TRIP_TYPES.items() %}<option value="{{ key }}" {% if form.trip_type == key %}selected{% endif %}>{{ name }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>Travel class
+      <select name="travel_class">
+        {% for c in TRAVEL_CLASSES %}<option value="{{ c }}" {% if form.travel_class == c %}selected{% endif %}>{{ c | label }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>From<input name="origin" placeholder="e.g. Pune" value="{{ form.origin or '' }}"></label>
+    <label>To / hotel city*<input name="destination" required placeholder="e.g. Delhi" value="{{ form.destination or '' }}"></label>
+    <label>Departure / check-in*<input type="date" name="depart_date" required value="{{ form.depart_date or '' }}"></label>
+    <label>Return / check-out<input type="date" name="return_date" value="{{ form.return_date or '' }}"></label>
+    <label>Travelers<input type="number" name="travelers" min="1" value="{{ form.travelers or 1 }}"></label>
+    <label>Estimated budget (₹)<input type="number" name="budget" min="0" step="1" value="{{ form.budget or '' }}"></label>
+    <label class="span2">Purpose / preferences<textarea name="purpose" rows="3" placeholder="Client meeting; prefer morning flight, hotel near Connaught Place">{{ form.purpose or '' }}</textarea></label>
+    <div class="span2"><button class="btn">Submit request</button></div>
+  </form>
+</div>
+{% endblock %}

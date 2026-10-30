@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+<p><a href="{{ url_for('agency_requests' if g.user.role == 'agency_admin' else 'portal_dashboard') }}">← Back</a></p>
+<div class="page-head">
+  <h1>Trip #{{ req.id }} · {{ TRIP_TYPES[req.trip_type] }} to {{ req.destination }}</h1>
+  <span class="badge {{ req.status }}">{{ REQUEST_STATUSES[req.status] }}</span>
+</div>
+
+{% if issues %}
+  <div class="flash warning">Out of policy: {{ issues | join('; ') }}</div>
+{% endif %}
+
+<div class="cols">
+  <div class="card">
+    <h2>Trip details</h2>
+    <dl class="details">
+      <dt>Company</dt><dd>{{ req.company_name }}</dd>
+      <dt>Requested by</dt><dd>{{ req.requester }} ({{ req.requester_email }}){% if req.department %} · {{ req.department }}{% endif %}</dd>
+      <dt>Route</dt><dd>{% if req.origin %}{{ req.origin }} → {% endif %}{{ req.destination }}</dd>
+      <dt>Dates</dt><dd>{{ req.depart_date }}{% if req.return_date %} to {{ req.return_date }}{% endif %}</dd>
+      <dt>Travelers</dt><dd>{{ req.travelers }}</dd>
+      <dt>Class</dt><dd>{{ req.travel_class | label }}</dd>
+      <dt>Budget</dt><dd>{{ req.budget | money if req.budget else 'Not specified' }}</dd>
+      <dt>Purpose</dt><dd>{{ req.purpose or '-' }}</dd>
+      {% if req.quote_amount %}
+        <dt>Quote</dt><dd><strong>{{ req.quote_amount | money }}</strong><br><span class="pre">{{ req.quote_details }}</span></dd>
+      {% endif %}
+      {% if req.booking_reference %}
+        <dt>Booking ref / PNR</dt><dd><strong>{{ req.booking_reference }}</strong><br><span class="pre">{{ req.booking_details }}</span></dd>
+      {% endif %}
+    </dl>
+  </div>
+
+  <div class="card">
+    <h2>Actions</h2>
+    {% set acted = namespace(any=false) %}
+
+    {% if g.user.role == 'company_admin' and req.status == 'pending_approval' %}
+      {% set acted.any = true %}
+      <form method="post" action="{{ url_for('request_decision', request_id=req.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label>Comment (optional)<input name="comment"></label>
+        <button class="btn" name="action" value="approve">Approve</button>
+        <button class="btn danger" name="action" value="reject">Reject</button>
+      </form>
+    {% endif %}
+
+    {% if g.user.role == 'company_admin' and req.status == 'quoted' %}
+      {% set acted.any = true %}
+      <p>The agency quoted <strong>{{ req.quote_amount | money }}</strong>.</p>
+      <form method="post" action="{{ url_for('request_decision', request_id=req.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label>Comment (optional)<input name="comment"></label>
+        <button class="btn" name="action" value="accept_quote">Accept quote &amp; book</button>
+        <button class="btn danger" name="action" value="reject_quote">Reject quote</button>
+      </form>
+    {% endif %}
+
+    {% if g.user.role == 'agency_admin' and req.status in ('approved', 'quoted') %}
+      {% set acted.any = true %}
+      <form method="post" action="{{ url_for('agency_quote', request_id=req.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label>Total quote (₹)<input type="number" name="quote_amount" min="1" step="1" required value="{{ req.quote_amount|int if req.quote_amount else '' }}"></label>
+        <label>Options / itinerary<textarea name="quote_details" rows="4" placeholder="e.g. Indigo 6E-203 07:10 BOM→DEL, Hotel Taj 2N incl. breakfast">{{ req.quote_details or '' }}</textarea></label>
+        <button class="btn">{{ 'Update quote' if req.status == 'quoted' else 'Send quote' }}</button>
+      </form>
+    {% endif %}
+
+    {% if g.user.role == 'agency_admin' and req.status == 'quote_accepted' %}
+      {% set acted.any = true %}
+      <form method="post" action="{{ url_for('agency_book', request_id=req.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label>Booking reference / PNR<input name="booking_reference" required></label>
+        <label>Ticket / voucher details<textarea name="booking_details" rows="4"></textarea></label>
+        <button class="btn">Mark as booked</button>
+      </form>
+    {% endif %}
+
+    {% if req.status in ('pending_approval', 'approved', 'quoted', 'quote_accepted') %}
+      {% set acted.any = true %}
+      <form method="post" action="{{ url_for('request_cancel', request_id=req.id) }}" class="cancel-form"
+            onsubmit="return confirm('Cancel this trip request?')">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <input type="hidden" name="comment" value="">
+        <button class="btn ghost small">Cancel request</button>
+      </form>
+    {% endif %}
+
+    {% if not acted.any %}<p class="muted">No actions available.</p>{% endif %}
+  </div>
+</div>
+
+<div class="card">
+  <h2>History</h2>
+  <ul class="timeline">
+    {% for e in events %}
+      <li><strong>{{ e.action }}</strong> · {{ e.user_name or 'System' }} · <span class="muted">{{ e.created_at }}</span>
+        {% if e.comment %}<div class="pre">{{ e.comment }}</div>{% endif %}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

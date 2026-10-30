@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Agency dashboard</h1>
+<div class="stats">
+  <a class="stat" href="{{ url_for('agency_leads', status='new') }}"><span>{{ lead_counts['new'] }}</span>New leads</a>
+  <a class="stat" href="{{ url_for('agency_leads') }}"><span>{{ lead_counts['contacted'] + lead_counts['proposal'] }}</span>Leads in progress</a>
+  <a class="stat" href="{{ url_for('agency_clients') }}"><span>{{ stats.clients }}</span>Corporate clients</a>
+  <a class="stat" href="{{ url_for('agency_requests', status='approved') }}"><span>{{ stats.to_quote }}</span>Trips to quote</a>
+  <a class="stat" href="{{ url_for('agency_requests', status='quote_accepted') }}"><span>{{ stats.to_book }}</span>Trips to book</a>
+  <a class="stat" href="{{ url_for('agency_requests', status='booked') }}"><span>{{ stats.booked_value | money }}</span>{{ stats.bookings }} bookings</a>
+</div>
+
+<div class="card">
+  <h2>Needs your action</h2>
+  {% with requests=action_items, show_company=true %}{% include "_requests_table.html" %}{% endwith %}
+</div>
+
+<div class="card">
+  <div class="page-head"><h2>Latest new leads</h2><a class="btn small" href="{{ url_for('agency_lead_new') }}">+ Add lead</a></div>
+  {% if new_leads %}
+  <table>
+    <thead><tr><th>Company</th><th>Contact</th><th>Size</th><th>Trips/mo</th><th>Received</th></tr></thead>
+    <tbody>
+    {% for l in new_leads %}
+      <tr><td><a href="{{ url_for('agency_lead_detail', lead_id=l.id) }}">{{ l.company_name }}</a></td>
+        <td>{{ l.contact_name }}</td><td>{{ l.company_size }}</td><td>{{ l.monthly_trips }}</td><td>{{ l.created_at }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p class="muted">No new leads. Share your website link with prospects!</p>{% endif %}
+</div>
+{% endblock %}

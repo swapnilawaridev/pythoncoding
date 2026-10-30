@@ -1,0 +1,20 @@
+{% if requests %}
+<table>
+  <thead><tr><th>#</th>{% if show_company %}<th>Company</th>{% endif %}<th>Traveler</th><th>Trip</th><th>Dates</th><th>Amount</th><th>Status</th></tr></thead>
+  <tbody>
+  {% for r in requests %}
+    <tr>
+      <td><a href="{{ url_for('request_detail', request_id=r.id) }}">#{{ r.id }}</a></td>
+      {% if show_company %}<td>{{ r.company_name }}</td>{% endif %}
+      <td>{{ r.requester }}</td>
+      <td>{{ TRIP_TYPES[r.trip_type] }}: {% if r.origin %}{{ r.origin }} → {% endif %}{{ r.destination }}</td>
+      <td>{{ r.depart_date }}{% if r.return_date %} – {{ r.return_date }}{% endif %}</td>
+      <td>{{ (r.quote_amount or r.budget) | money }}</td>
+      <td><span class="badge {{ r.status }}">{{ REQUEST_STATUSES[r.status] }}</span></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No trips yet.</p>
+{% endif %}

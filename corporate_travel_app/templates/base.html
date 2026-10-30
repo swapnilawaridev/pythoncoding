@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ agency.name }}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="{{ url_for('index') }}">✈ {{ agency.name }}</a>
+    <nav>
+      {% if g.user and g.user.role == 'agency_admin' %}
+        <a href="{{ url_for('agency_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('agency_leads') }}">Leads</a>
+        <a href="{{ url_for('agency_clients') }}">Clients</a>
+        <a href="{{ url_for('agency_requests') }}">Trips</a>
+      {% elif g.user %}
+        <a href="{{ url_for('portal_dashboard') }}">My trips</a>
+        <a href="{{ url_for('request_new') }}">New request</a>
+        {% if g.user.role == 'company_admin' %}
+          <a href="{{ url_for('portal_team') }}">Team</a>
+          <a href="{{ url_for('portal_policy') }}">Policy</a>
+        {% endif %}
+      {% endif %}
+      {% if g.user %}
+        <a href="{{ url_for('change_password') }}" title="Change password">{{ g.user.name }}</a>
+        <form method="post" action="{{ url_for('logout') }}" class="inline">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <button class="link">Log out</button>
+        </form>
+      {% else %}
+        <a href="{{ url_for('index') }}#enquiry">Get a proposal</a>
+        <a class="btn small" href="{{ url_for('login') }}">Client login</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="flash {{ category }}">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</main>
+<footer class="wrap footer">
+  {{ agency.name }} · {{ agency.phone }} · {{ agency.email }}
+</footer>
+</body>
+</html>

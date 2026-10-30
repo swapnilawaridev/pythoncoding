@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<p><a href="{{ url_for('agency_leads') }}">← Leads</a></p>
+<div class="page-head">
+  <h1>{{ lead.company_name }}</h1>
+  <span class="badge lead-{{ lead.status }}">{{ lead.status | label }}</span>
+</div>
+<div class="cols">
+  <div class="card">
+    <h2>Contact</h2>
+    <dl class="details">
+      <dt>Name</dt><dd>{{ lead.contact_name }}</dd>
+      <dt>Email</dt><dd><a href="mailto:{{ lead.email }}">{{ lead.email }}</a></dd>
+      <dt>Phone</dt><dd>{% if lead.phone %}<a href="tel:{{ lead.phone }}">{{ lead.phone }}</a>{% else %}-{% endif %}</dd>
+      <dt>Company size</dt><dd>{{ lead.company_size or '-' }}</dd>
+      <dt>Trips / month</dt><dd>{{ lead.monthly_trips or '-' }}</dd>
+      <dt>Source</dt><dd>{{ lead.source | label }}</dd>
+      <dt>Received</dt><dd>{{ lead.created_at }}</dd>
+      <dt>Requirement</dt><dd class="pre">{{ lead.message or '-' }}</dd>
+    </dl>
+  </div>
+  <div class="card">
+    <h2>Follow-up</h2>
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label>Stage
+        <select name="status">
+          {% for s in LEAD_STATUSES %}<option value="{{ s }}" {% if lead.status == s %}selected{% endif %}>{{ s | label }}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Notes<textarea name="notes" rows="6" placeholder="Call log, proposal sent, negotiated rates…">{{ lead.notes or '' }}</textarea></label>
+      <button class="btn">Save</button>
+    </form>
+    <hr>
+    {% if lead.company_id %}
+      <p>Converted to client. <a href="{{ url_for('agency_client_detail', company_id=lead.company_id) }}">Open client →</a></p>
+    {% else %}
+      <p class="muted">Deal closed? Create a client account and a portal login for {{ lead.contact_name }}.</p>
+      <form method="post" action="{{ url_for('agency_lead_convert', lead_id=lead.id) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button class="btn">Convert to corporate client</button>
+      </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

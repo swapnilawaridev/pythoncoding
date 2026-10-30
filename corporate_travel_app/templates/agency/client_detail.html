@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<p><a href="{{ url_for('agency_clients') }}">← Clients</a></p>
+<h1>{{ company.name }}</h1>
+<div class="cols">
+  <div class="card">
+    <h2>Profile &amp; policy</h2>
+    <dl class="details">
+      <dt>GST</dt><dd>{{ company.gst_number or '-' }}</dd>
+      <dt>Billing address</dt><dd class="pre">{{ company.billing_address or '-' }}</dd>
+      <dt>Max per trip</dt><dd>{{ company.max_trip_budget | money if company.max_trip_budget else 'No limit' }}</dd>
+      <dt>Highest class</dt><dd>{{ company.allowed_flight_class | label }}</dd>
+      <dt>Approval needed</dt><dd>{{ 'Yes' if company.approval_required else 'Only when out of policy' }}</dd>
+    </dl>
+  </div>
+  <div class="card">
+    <h2>Users</h2>
+    <table>
+      <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
+      <tbody>{% for u in users %}<tr class="{{ 'inactive' if not u.active }}"><td>{{ u.name }}</td><td>{{ u.email }}</td><td>{{ u.role | label }}</td></tr>{% endfor %}</tbody>
+    </table>
+  </div>
+</div>
+<div class="card">
+  <h2>Trips</h2>
+  {% with show_company=false %}{% include "_requests_table.html" %}{% endwith %}
+</div>
+{% endblock %}

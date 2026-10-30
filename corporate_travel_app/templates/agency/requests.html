@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Trip requests</h1>
+<div class="tabs">
+  <a href="{{ url_for('agency_requests') }}" class="{{ 'active' if not status }}">All</a>
+  {% for key, name in REQUEST_STATUSES.items() %}
+    <a href="{{ url_for('agency_requests', status=key) }}" class="{{ 'active' if status == key }}">{{ name }}</a>
+  {% endfor %}
+</div>
+{% with show_company=true %}{% include "_requests_table.html" %}{% endwith %}
+{% endblock %}

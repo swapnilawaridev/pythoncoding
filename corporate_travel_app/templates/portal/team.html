@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Team</h1>
+<div class="cols">
+  <div class="card">
+    <h2>Members</h2>
+    <table>
+      <thead><tr><th>Name</th><th>Email</th><th>Department</th><th>Role</th><th></th></tr></thead>
+      <tbody>
+      {% for u in users %}
+        <tr class="{{ 'inactive' if not u.active }}">
+          <td>{{ u.name }}</td><td>{{ u.email }}</td><td>{{ u.department or '-' }}</td><td>{{ u.role | label }}</td>
+          <td>{% if u.id != g.user.id %}
+            <form method="post" action="{{ url_for('portal_team_toggle', user_id=u.id) }}" class="inline">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+              <button class="link">{{ 'Deactivate' if u.active else 'Reactivate' }}</button>
+            </form>{% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Add a traveler</h2>
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label>Full name<input name="name" required></label>
+      <label>Work email<input type="email" name="email" required></label>
+      <label>Department<input name="department"></label>
+      <label>Role
+        <select name="role">
+          <option value="employee">Employee (requests trips)</option>
+          <option value="company_admin">Travel manager (approves trips)</option>
+        </select>
+      </label>
+      <button class="btn">Add &amp; create login</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

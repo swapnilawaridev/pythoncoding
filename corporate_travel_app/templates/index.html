@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div>
+    <h1>Corporate travel, handled end&#8209;to&#8209;end.</h1>
+    <p class="lead">Give your team one place to request trips, enforce your travel policy and approve
+      spend — while our travel desk finds the best fares and books everything for you.</p>
+    <a class="btn" href="#enquiry">Get a free proposal</a>
+    <a class="btn ghost" href="{{ url_for('login') }}">Existing client? Log in</a>
+  </div>
+</section>
+
+<section class="features">
+  <div class="card"><h3>Online request portal</h3><p>Employees raise flight, hotel, train, cab and visa requests in a minute.</p></div>
+  <div class="card"><h3>Approvals &amp; policy</h3><p>Set budget limits and allowed travel class. Managers approve with one click.</p></div>
+  <div class="card"><h3>Dedicated travel desk</h3><p>Our team quotes, books and shares PNRs and vouchers — 24×7 support.</p></div>
+  <div class="card"><h3>Spend visibility</h3><p>See every trip, its status and your total travel spend in one dashboard.</p></div>
+</section>
+
+<section id="enquiry" class="card form-card">
+  <h2>Tell us about your company's travel</h2>
+  <p class="muted">We'll get back within one business day with a tailored proposal.</p>
+  <form method="post" action="{{ url_for('enquiry') }}" class="grid2">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Company name*<input name="company_name" required value="{{ form.company_name or '' }}"></label>
+    <label>Your name*<input name="contact_name" required value="{{ form.contact_name or '' }}"></label>
+    <label>Work email*<input type="email" name="email" required value="{{ form.email or '' }}"></label>
+    <label>Phone<input name="phone" value="{{ form.phone or '' }}"></label>
+    <label>Company size
+      <select name="company_size">
+        {% for s in ['1-50', '51-200', '201-1000', '1000+'] %}
+          <option {% if form.company_size == s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Trips per month
+      <select name="monthly_trips">
+        {% for s in ['1-5', '6-20', '21-50', '50+'] %}
+          <option {% if form.monthly_trips == s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label class="span2">What do you need help with?<textarea name="message" rows="3">{{ form.message or '' }}</textarea></label>
+    <div class="span2"><button class="btn">Request proposal</button></div>
+  </form>
+</section>
+{% endblock %}

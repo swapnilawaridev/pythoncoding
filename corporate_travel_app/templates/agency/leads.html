@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-head"><h1>Leads</h1><a class="btn small" href="{{ url_for('agency_lead_new') }}">+ Add lead</a></div>
+<div class="tabs">
+  <a href="{{ url_for('agency_leads') }}" class="{{ 'active' if not status }}">All</a>
+  {% for s in LEAD_STATUSES %}
+    <a href="{{ url_for('agency_leads', status=s) }}" class="{{ 'active' if status == s }}">{{ s | label }}</a>
+  {% endfor %}
+</div>
+{% if leads %}
+<table>
+  <thead><tr><th>Company</th><th>Contact</th><th>Email / phone</th><th>Size</th><th>Trips/mo</th><th>Source</th><th>Status</th><th>Received</th></tr></thead>
+  <tbody>
+  {% for l in leads %}
+    <tr>
+      <td><a href="{{ url_for('agency_lead_detail', lead_id=l.id) }}">{{ l.company_name }}</a></td>
+      <td>{{ l.contact_name }}</td>
+      <td>{{ l.email }}<br><span class="muted">{{ l.phone }}</span></td>
+      <td>{{ l.company_size }}</td><td>{{ l.monthly_trips }}</td><td>{{ l.source | label }}</td>
+      <td><span class="badge lead-{{ l.status }}">{{ l.status | label }}</span></td>
+      <td>{{ l.created_at }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}<p class="muted">No leads here yet.</p>{% endif %}
+{% endblock %}

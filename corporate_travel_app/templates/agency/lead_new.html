@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<p><a href="{{ url_for('agency_leads') }}">← Leads</a></p>
+<div class="card form-card">
+  <h1>Add a lead</h1>
+  <p class="muted">For prospects you met offline — calls, referrals, events, LinkedIn.</p>
+  <form method="post" class="grid2">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>Company name*<input name="company_name" required value="{{ form.company_name or '' }}"></label>
+    <label>Contact name*<input name="contact_name" required value="{{ form.contact_name or '' }}"></label>
+    <label>Email*<input type="email" name="email" required value="{{ form.email or '' }}"></label>
+    <label>Phone<input name="phone" value="{{ form.phone or '' }}"></label>
+    <label>Company size<input name="company_size" value="{{ form.company_size or '' }}" placeholder="e.g. 51-200"></label>
+    <label>Trips per month<input name="monthly_trips" value="{{ form.monthly_trips or '' }}" placeholder="e.g. 6-20"></label>
+    <label>Source
+      <select name="source">
+        {% for s in ['referral', 'phone', 'event', 'linkedin', 'cold_outreach', 'manual'] %}
+          <option value="{{ s }}" {% if form.source == s %}selected{% endif %}>{{ s | label }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label class="span2">Requirement<textarea name="message" rows="3">{{ form.message or '' }}</textarea></label>
+    <label class="span2">Internal notes<textarea name="notes" rows="2">{{ form.notes or '' }}</textarea></label>
+    <div class="span2"><button class="btn">Save lead</button></div>
+  </form>
+</div>
+{% endblock %}
