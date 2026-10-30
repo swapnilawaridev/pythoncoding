@@ -6,6 +6,7 @@ Runs a small web server (standard library only, no pip install needed) that:
   2. Validates and saves every enquiry as a lead in SQLite
   3. Scores each lead HOT / WARM / COLD so you call the best ones first
   4. Emails the visitor an instant reply and alerts you about the new lead
+     by email and WhatsApp
   5. Gives you a password-protected dashboard and a CSV export
 
 Run:   python lead_generator.py
@@ -25,7 +26,9 @@ import sqlite3
 from datetime import date, datetime, timedelta
 from email.message import EmailMessage
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import parse_qs, urlparse
+from urllib.error import HTTPError, URLError
+from urllib.parse import parse_qs, quote, urlparse
+from urllib.request import Request, urlopen
 
 # ---------------------------------------------------------------- settings
 # Change these with environment variables instead of editing the code.
@@ -41,6 +44,20 @@ SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
 SMTP_USER = os.environ.get("SMTP_USER", "")
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD", "")  # Gmail: use an App Password
 SALES_EMAIL = os.environ.get("SALES_EMAIL", SMTP_USER or "sales@example.com")
+
+# WhatsApp alerts (optional) via the WhatsApp Business Cloud API from Meta.
+# If WHATSAPP_TOKEN is empty, alerts are written to whatsapp_outbox.log.
+WHATSAPP_TOKEN = os.environ.get("WHATSAPP_TOKEN", "")
+WHATSAPP_PHONE_NUMBER_ID = os.environ.get("WHATSAPP_PHONE_NUMBER_ID", "")
+# Numbers to alert, with country code and no "+", comma separated: 919876543210,918765432109
+WHATSAPP_ALERT_TO = [n.strip().lstrip("+") for n in os.environ.get("WHATSAPP_ALERT_TO", "").split(",") if n.strip()]
+# Approved template name. Needed to message someone who has not written to your
+# business number in the last 24 hours. Its body must have 1 variable: {{1}}.
+WHATSAPP_TEMPLATE = os.environ.get("WHATSAPP_TEMPLATE", "")
+WHATSAPP_TEMPLATE_LANG = os.environ.get("WHATSAPP_TEMPLATE_LANG", "en")
+# Only alert for leads at or above this rating: HOT, WARM or COLD (= every lead)
+WHATSAPP_MIN_RATING = os.environ.get("WHATSAPP_MIN_RATING", "COLD").upper()
+WHATSAPP_API_VERSION = "v21.0"
 
 TRIP_TYPES = ["Honeymoon", "Family", "Adventure", "Pilgrimage", "Beach", "Corporate", "Other"]
 BUDGETS = {  # label -> budget per person in INR (used for scoring)
@@ -210,6 +227,59 @@ def send_email(to, subject, body):
         print(f"[email] could not send to {to}: {exc}")
 
 
+# ---------------------------------------------------------------- whatsapp
+RATING_RANK = {"COLD": 0, "WARM": 1, "HOT": 2}
+
+
+def whatsapp_link(phone, text=""):
+    """Click-to-chat link that opens WhatsApp with the lead (10-digit Indian number)."""
+    return f"https://wa.me/91{phone}" + (f"?text={quote(text)}" if text else "")
+
+
+def send_whatsapp(to, text):
+    if not (WHATSAPP_TOKEN and WHATSAPP_PHONE_NUMBER_ID):
+        with open("whatsapp_outbox.log", "a", encoding="utf-8") as f:
+            f.write(f"\n{'=' * 60}\nTo: {to}\n{text}\n")
+        return
+    if WHATSAPP_TEMPLATE:
+        # Template variables cannot contain new lines, tabs or 4+ spaces.
+        summary = re.sub(r"\s+", " ", text)[:1000]
+        payload = {"type": "template", "template": {
+            "name": WHATSAPP_TEMPLATE,
+            "language": {"code": WHATSAPP_TEMPLATE_LANG},
+            "components": [{"type": "body", "parameters": [{"type": "text", "text": summary}]}]}}
+    else:
+        payload = {"type": "text", "text": {"body": text, "preview_url": False}}
+    payload.update(messaging_product="whatsapp", to=to)
+    request = Request(
+        f"https://graph.facebook.com/{WHATSAPP_API_VERSION}/{WHATSAPP_PHONE_NUMBER_ID}/messages",
+        data=json.dumps(payload).encode(),
+        headers={"Authorization": f"Bearer {WHATSAPP_TOKEN}", "Content-Type": "application/json"})
+    try:
+        with urlopen(request, timeout=15):
+            pass
+    except HTTPError as exc:  # never lose a lead because WhatsApp failed
+        print(f"[whatsapp] could not send to {to}: {exc.code} {exc.read().decode(errors='replace')[:300]}")
+    except URLError as exc:
+        print(f"[whatsapp] could not send to {to}: {exc.reason}")
+
+
+def whatsapp_alert(lead_id, lead):
+    if RATING_RANK[lead["rating"]] < RATING_RANK.get(WHATSAPP_MIN_RATING, 0):
+        return
+    greeting = f"Hi {lead['name']}, thanks for your {lead['destination']} trip enquiry with {SITE_NAME}!"
+    text = (f"New {lead['rating']} lead #{lead_id} (score {lead['score']}/100)\n"
+            f"Name: {lead['name']}\n"
+            f"Phone: +91 {lead['phone']}\n"
+            f"Trip: {lead['destination']}, {lead['travel_date'] or 'flexible date'}, "
+            f"{lead['travelers']} pax\n"
+            f"Budget: {lead['budget'] or 'not given'} | {lead['trip_type'] or 'any'}\n"
+            f"Source: {lead['source'] or 'direct'}\n"
+            f"Chat now: {whatsapp_link(lead['phone'], greeting)}")
+    for number in WHATSAPP_ALERT_TO or ["(set WHATSAPP_ALERT_TO)"]:
+        send_whatsapp(number, text)
+
+
 def notify(lead_id, lead):
     send_email(
         lead["email"],
@@ -223,6 +293,7 @@ def notify(lead_id, lead):
         SALES_EMAIL,
         f"[{lead['rating']} LEAD #{lead_id}] {lead['name']} -> {lead['destination']}",
         "\n".join(f"{k:12}: {v}" for k, v in lead.items()))
+    whatsapp_alert(lead_id, lead)
 
 
 def capture_lead(form):
@@ -303,7 +374,7 @@ def admin_page():
     rows = "".join(f"""<tr>
 <td>#{l['id']}<br><small>{l['created_at'].replace('T', ' ')}</small></td>
 <td class="{l['rating']}">{l['rating']}<br><small>{l['score']}/100</small></td>
-<td>{html.escape(l['name'])}<br><a href="tel:{l['phone']}">{l['phone']}</a><br><a href="mailto:{html.escape(l['email'])}">{html.escape(l['email'])}</a></td>
+<td>{html.escape(l['name'])}<br><a href="tel:{l['phone']}">{l['phone']}</a> &middot; <a href="{html.escape(whatsapp_link(l['phone']))}" target="_blank">WhatsApp</a><br><a href="mailto:{html.escape(l['email'])}">{html.escape(l['email'])}</a></td>
 <td>{html.escape(l['destination'])}<br><small>{l['travel_date'] or 'Flexible'} &middot; {l['travelers']} pax</small></td>
 <td>{html.escape(l['budget'] or '-')}<br><small>{html.escape(l['trip_type'] or '')}</small></td>
 <td>{html.escape(l['source'] or 'direct')}</td>

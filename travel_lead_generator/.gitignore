@@ -1,3 +1,4 @@
 leads.db
 outbox.log
+whatsapp_outbox.log
 __pycache__/
