@@ -41,12 +41,35 @@ For every verified (non-spam) enquiry it:
 Netlify still stores every submission (Forms tab, CSV download) and still sends its own email notifications,
 just as it does today.
 
+## Trip cost planner (lead magnet)
+`site/trip-planner.html` is a free **Trip Cost Calculator & Itinerary Planner** that becomes https://sawaritravel.com/trip-planner.
+Visitors choose a destination (14 popular ones: Goa, Kerala, Kashmir, Dubai, Thailand, Bali ...), the number of days, people and a travel style.
+They see an **instant cost estimate**, and enter name, mobile and email to unlock the full day-by-day plan.
+Every unlock is saved as a Netlify Form called **`trip-plan`**, and the lead-alert function scores it and alerts you like any other enquiry.
+
+Before going live:
+- Put your WhatsApp business number in `SAWARI_WHATSAPP` near the top of the `<script>` (e.g. `"919876543210"`)
+  to show a "Chat on WhatsApp" button after unlocking.
+- Check the prices in `DESTINATIONS` and change them to match your own packages. They are rough estimates.
+- Link to it from your home page and menu: "✈ How much will my trip cost?"
+
+How to get people to it (this is what actually brings leads):
+| Where | What to post |
+|---|---|
+| Instagram / Facebook reels and stories | "Kerala for 2 people costs ₹70,000? Check your trip in 30 sec 👉 link in bio". Use `https://sawaritravel.com/trip-planner?destination=Kerala&utm_source=instagram` |
+| WhatsApp status and groups | Share the link. The preview shows "How much will your next holiday cost?" |
+| Google Ads | Search ads for "kerala tour package cost", "goa trip cost for 2" pointing to `?destination=...&utm_source=google_ads` |
+| Google Business Profile | Add the link as a post / offer |
+
+`?destination=Kerala` pre-selects the destination, and `utm_source` shows up in the lead alert, so you know which post brought each lead.
+
 ## Folder layout
 ```
 netlify-site/
 ├── netlify.toml                      ← tells Netlify where things are
 ├── netlify/functions/lead-alert.mts  ← the lead alert function
 └── site/                             ← put your website files here (index.html, images, css ...)
+    └── trip-planner.html             ← the trip cost planner page
 ```
 
 ## One-time setup

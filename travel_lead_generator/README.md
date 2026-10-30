@@ -2,6 +2,13 @@
 
 Turns visitors to **https://sawaritravel.com** into sales leads. Plain Python (standard library only, nothing to install).
 
+## What's in this folder
+| Folder | What it does |
+|---|---|
+| [`netlify-site/`](netlify-site/README.md) | **For sawaritravel.com (Netlify).** Trip cost planner page that turns visitors into leads, plus automatic lead scoring, WhatsApp alerts and thank-you emails for your forms |
+| [`business_lead_finder/`](business_lead_finder/README.md) | App for your computer: finds companies, colleges, schools and other groups in any city that need travel, and tracks your calls and follow-ups |
+| `lead_generator.py` (below) | Self-hosted alternative to `netlify-site/`, if you ever move to your own server |
+
 > **sawaritravel.com is hosted on Netlify. Use [`netlify-site/`](netlify-site/README.md).**
 > It adds lead scoring, WhatsApp alerts and thank-you emails to your existing Netlify `enquiry` form, with no extra server.
 > The Python app below is the self-hosted alternative. Use it if you move to your own server (VPS) or want its built-in dashboard.
