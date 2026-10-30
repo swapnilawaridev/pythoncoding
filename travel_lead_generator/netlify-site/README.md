@@ -63,13 +63,32 @@ How to get people to it (this is what actually brings leads):
 
 `?destination=Kerala` pre-selects the destination, and `utm_source` shows up in the lead alert, so you know which post brought each lead.
 
+## Travel quiz (shareable lead app)
+`site/travel-quiz.html` is a **"Where should you travel next?"** quiz, live at https://sawaritravel.com/travel-quiz.html.
+1. Visitors answer 6 tap-to-answer questions: who's travelling, kind of holiday, budget, days, when, and India or abroad.
+2. They get a matching destination with prices and the best season, plus two alternatives.
+3. To get the plan and price, they leave their name and WhatsApp number. This is saved as a Netlify Form called **`trip-quiz`**,
+   and the lead-alert function scores it and alerts you.
+4. They then get a **personal share link** and a "Share on WhatsApp" button: *"I took the Sawari Travel quiz and got Kerala! Find your perfect holiday…"*.
+   Friends who come through that link are tagged, so a lead's message shows `Referred by friend code K3X9QZ`.
+   Search the `trip-quiz` submissions for that code to see who referred whom.
+
+Settings at the top of `site/assets/travel-quiz.js`:
+- `REFERRAL_REWARD`: leave it empty, or set a reward you will honour, e.g. `"₹500 off for you and your friend"`.
+  It is then shown on the share screen.
+- `DESTINATIONS`: prices, best months and descriptions. Update them to match your packages.
+
+To get people started, post it as an Instagram reel or story ("Where should YOU travel next? Take the quiz 👉 link in bio"),
+put it on your WhatsApp status, and add it to your Instagram bio with `?utm_source=instagram`.
+
 ## Folder layout
 ```
 netlify-site/
 ├── netlify.toml                      ← tells Netlify where things are
 ├── netlify/functions/lead-alert.mts  ← the lead alert function
 └── site/                             ← put your website files here (index.html, images, css ...)
-    └── trip-planner.html             ← the trip cost planner page
+    ├── trip-planner.html             ← the trip cost planner page
+    └── travel-quiz.html              ← the shareable travel quiz
 ```
 
 ## One-time setup

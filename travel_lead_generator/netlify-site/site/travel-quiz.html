@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Where Should You Travel Next? Take the Quiz | Sawari Travel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Answer 6 quick questions and find your perfect holiday: Goa, Kerala, Kashmir, Dubai, Thailand, Bali and more. Free plan and price from Sawari Travel.">
+<meta property="og:title" content="Where should you travel next? 🌴 Take the 30-second quiz">
+<meta property="og:description" content="Answer 6 quick questions and discover your perfect holiday. By Sawari Travel.">
+<meta property="og:image" content="https://sawaritravel.com/assets/hero-photo.jpg">
+<meta property="og:url" content="https://sawaritravel.com/travel-quiz.html">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="canonical" href="https://sawaritravel.com/travel-quiz.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@1,600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#052856}a:hover{color:#B45309}
+*{box-sizing:border-box}
+.qz{max-width:680px;margin:0 auto;padding:40px 20px 72px}
+.card{background:#fff;border:1px solid #E5E7EB;border-radius:24px;padding:32px;box-shadow:0 14px 40px rgba(5,40,86,.08)}
+.eyebrow{color:#B45309;font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px}
+h1,h2{font-family:Montserrat,Inter,sans-serif;margin:0 0 12px;line-height:1.15}
+h1{font-size:clamp(2rem,6vw,2.8rem);font-weight:800}
+h1 em,h2 em{font-family:"Playfair Display",serif;font-weight:600;color:#B45309}
+h2{font-size:clamp(1.4rem,4.5vw,1.8rem)}
+p{margin:0 0 16px}
+.muted{color:#4B5563}
+.btn{text-align:center;display:flex;justify-content:center;align-items:center;gap:10px;width:100%;border:0;border-radius:999px;padding:16px 26px;background:#F39A1E;color:#052856;font:700 17px Inter,sans-serif;cursor:pointer;text-decoration:none}
+.btn:hover{background:#E0890F;color:#052856}
+.btn[disabled]{opacity:.6;cursor:wait}
+.btn.wa{background:#25D366}
+.btn.ghost{background:#fff;border:1.5px solid #052856}
+.link{background:none;border:0;padding:8px 0;color:#052856;font:600 15px Inter,sans-serif;cursor:pointer;text-decoration:underline}
+.bar{height:8px;background:#EEF2F7;border-radius:999px;overflow:hidden;margin:6px 0 24px}
+.bar div{height:100%;width:0;background:#F39A1E;border-radius:999px;transition:width .3s}
+.opts{display:grid;gap:12px}
+.opt{text-align:left;padding:18px 20px;border:1.5px solid #D1D5DB;border-radius:16px;background:#fff;font:600 17px Inter,sans-serif;color:#052856;cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover,.opt:focus-visible{border-color:#F39A1E;background:#FFF7EC;outline:none}
+.hero{background:#052856;color:#fff;border:0;text-align:center}
+.hero .muted{color:#C7D2E0}
+.dest{font-family:Montserrat,Inter,sans-serif;font-weight:800;font-size:clamp(2.4rem,9vw,3.6rem);color:#F39A1E;margin:4px 0 10px;line-height:1.05}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 4px}
+.chips span{background:rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;font-size:14px}
+label{display:block;font-size:14px;font-weight:600;margin-bottom:14px}
+input{width:100%;margin-top:6px;padding:13px 14px;border:1.5px solid #D1D5DB;border-radius:12px;font:inherit;font-size:16px;color:#052856}
+input:focus{outline:none;border-color:#F39A1E;box-shadow:0 0 0 3px rgba(243,154,30,.25)}
+.err{background:#FEF2F2;color:#991B1B;padding:12px 14px;border-radius:12px;margin-bottom:16px}
+.friend{background:#FFF7EC;border:1px solid #F8D9A8;border-radius:14px;padding:12px 16px;margin-bottom:18px;font-size:15px}
+.copyrow{display:flex;gap:8px;margin-top:12px}.copyrow input{margin:0;font-size:14px}
+.copyrow button{flex:0 0 auto;padding:0 18px;border-radius:12px;border:1.5px solid #052856;background:#fff;color:#052856;font:600 15px Inter,sans-serif;cursor:pointer}
+.stack{display:grid;gap:12px;margin-top:18px}
+.trust{display:flex;gap:6px 18px;flex-wrap:wrap;justify-content:center;margin-top:14px;color:#4B5563;font-size:14px}
+.hidden{display:none !important}
+.space{height:18px}
+@media(max-width:560px){.card{padding:22px}.qz{padding-top:24px}}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif; color: #052856; background: #FFFFFF; min-height: 100vh">
+<header style="border-bottom: 1px solid #E5E7EB; background: #FFFFFF">
+<nav aria-label="Main" style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="index.html" aria-label="Sawari Travel home" style="display: flex; align-items: center; text-decoration: none">
+<img src="assets/sawari-logo-wide.png" alt="Sawari Travel" style="height: 52px; width: auto; display: block">
+</a>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 15px; font-weight: 500">
+<a href="index.html" style="text-decoration: none; padding: 12px 0">Home</a>
+<a href="services.html" style="text-decoration: none; padding: 12px 0">Services</a>
+<a href="index.html#why" style="text-decoration: none; padding: 12px 0">Why Sawari</a>
+<a href="trip-planner.html" style="text-decoration: none; padding: 12px 0">Trip Cost</a>
+<a href="contact.html" style="text-decoration: none; padding: 12px 0">Contact</a>
+<a href="tel:+919730749747" style="text-decoration: none; background: #F39A1E; color: #052856; padding: 12px 20px; border-radius: 999px; font-weight: 700; display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>97307 49747</a>
+</div>
+</nav>
+</header>
+
+<main class="qz">
+  <section class="card" id="intro">
+    <p class="eyebrow">30-second travel quiz</p>
+    <h1>Where should you <em>travel</em> next?</h1>
+    <div class="friend hidden" id="friend">👋 A friend invited you! Take the quiz and see where you should go.</div>
+    <p class="muted">Answer 6 quick questions about who you travel with, what you love and your budget, and we'll match you with your perfect holiday, with prices.</p>
+    <button class="btn" type="button" id="start">Start the quiz →</button>
+    <div class="trust"><span>✔ Free</span><span>✔ 6 questions</span><span>✔ Instant result</span></div>
+  </section>
+
+  <section class="card hidden" id="quiz" aria-live="polite">
+    <div class="muted" id="q-count" style="font-size:14px"></div>
+    <div class="bar"><div id="progress-bar"></div></div>
+    <h2 id="q-text"></h2>
+    <div class="space"></div>
+    <div class="opts" id="q-options"></div>
+    <button class="link hidden" type="button" id="back">← Back</button>
+  </section>
+
+  <div class="hidden" id="result">
+    <section class="card hero">
+      <p class="muted" style="margin:0">Your perfect holiday is…</p>
+      <div class="dest" id="r-name"></div>
+      <p id="r-why" style="margin:0 auto;max-width:460px"></p>
+      <div class="chips"><span id="r-price"></span><span id="r-days"></span><span id="r-best"></span></div>
+      <p class="muted" style="margin:14px 0 0;font-size:14px">Also a great match: <span id="r-alt"></span></p>
+    </section>
+    <div class="space"></div>
+
+    <section class="card" id="lead">
+      <h2>Get your <em>free</em> plan &amp; best price</h2>
+      <p class="muted">We'll send you a day-by-day plan and an exact quote on WhatsApp. No spam, no obligation.</p>
+      <div class="err hidden" id="err"></div>
+      <!-- Netlify Form: submissions appear under Forms > trip-quiz, and trigger the lead-alert function -->
+      <form name="trip-quiz" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="lead-form">
+        <input type="hidden" name="form-name" value="trip-quiz">
+        <input type="hidden" name="service" value="Travel Planning / Holiday Package (Travel Quiz)">
+        <input type="hidden" name="destination">
+        <input type="hidden" name="travel_date">
+        <input type="hidden" name="message">
+        <input type="hidden" name="ref_code">
+        <input type="hidden" name="referred_by">
+        <p class="hidden"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <label>Your name<input name="name" autocomplete="name" required></label>
+        <label>WhatsApp number<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="10-digit mobile" required></label>
+        <label>Email (optional)<input name="email" type="email" autocomplete="email"></label>
+        <button class="btn" type="submit" id="submit">Send me the plan &amp; price</button>
+      </form>
+      <div style="text-align:center"><button class="link" type="button" id="retake">Retake the quiz</button></div>
+    </section>
+
+    <section class="card hidden" id="thanks">
+      <h2 id="thanks-title"></h2>
+      <p class="muted">A Sawari Travel expert will message you on WhatsApp within 24 hours.</p>
+      <a class="btn wa" id="chat" target="_blank" rel="noopener">Chat with us now on WhatsApp</a>
+      <div class="space"></div>
+      <h2 style="font-size:1.3rem">Where should your friends go? 🤔</h2>
+      <p class="muted" style="margin-bottom:0">Share the quiz with your travel buddies and plan a trip together.</p>
+      <div class="friend hidden" id="reward" style="margin:12px 0 0"></div>
+      <div class="stack">
+        <a class="btn ghost" id="share-wa" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <button class="btn ghost hidden" type="button" id="share-native">Share on Instagram / more…</button>
+      </div>
+      <div class="copyrow"><input id="share-link" readonly aria-label="Your share link"><button type="button" id="copy">Copy</button></div>
+    </section>
+  </div>
+</main>
+<footer style="border-top: 1px solid #E5E7EB">
+<div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px 96px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; font-size: 14px; color: #4B5563">
+<div style="display: flex; flex-direction: column; gap: 8px"><img src="assets/sawari-logo-wide.png" alt="Sawari Travel" style="height: 40px; width: auto; display: block; align-self: flex-start"><span>Every Journey Begins with Sawari</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 24px">
+<a href="index.html" style="text-decoration: none; padding: 12px 0">Home</a>
+<a href="services.html" style="text-decoration: none; padding: 12px 0">Services</a>
+<a href="index.html#why" style="text-decoration: none; padding: 12px 0">Why Sawari</a>
+<a href="trip-planner.html" style="text-decoration: none; padding: 12px 0">Trip Cost</a>
+<a href="travel-quiz.html" aria-current="page" style="text-decoration: none; padding: 12px 0">Travel Quiz</a>
+<a href="contact.html" style="text-decoration: none; padding: 12px 0">Contact</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<a href="tel:+919730749747" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>9730749747</a>
+<a href="mailto:contact@sawaritravel.com" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 7l-10 6L2 7"></path></svg>contact@sawaritravel.com</a>
+<a href="https://wa.me/919730749747?text=Hello%20Sawari%20Travel%2C%20I%E2%80%99d%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3zM9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.3-1.8-.9-.8.8c-1.1-.4-2-1.3-2.4-2.4l.8-.8-.9-1.8z"></path></svg>WhatsApp: 9730749747</a>
+<a href="https://www.facebook.com/share/1EuC4BGG5Z/" target="_blank" rel="noopener" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</a>
+<a href="https://www.instagram.com/sawari_travel" target="_blank" rel="noopener" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zM16 11.4A4 4 0 1 1 12.6 8 4 4 0 0 1 16 11.4zM17.5 6.5h.01"></path></svg>Instagram</a>
+<a href="https://www.sawaritravel.com" style="text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"></path></svg>www.sawaritravel.com</a>
+<span>© 2026 Sawari Travel</span>
+</div>
+</div>
+</footer>
+</div>
+<script src="assets/travel-quiz.js"></script>
+</body>
+</html>

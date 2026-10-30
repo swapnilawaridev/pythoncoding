@@ -1,5 +1,5 @@
 // Runs automatically on every verified (non-spam) Netlify Forms submission on
-// sawaritravel.com. For the "enquiry" and "trip-plan" forms it:
+// sawaritravel.com. For the "enquiry", "trip-plan" and "trip-quiz" forms it:
 //   1. Scores the lead 0-100 and rates it HOT / WARM / COLD
 //   2. Sends the sales team a WhatsApp alert (WhatsApp Business Cloud API)
 //   3. Emails the customer an instant thank-you reply (Resend)
@@ -11,7 +11,7 @@ const env = (key: string, fallback = "") => Netlify.env.get(key) ?? fallback
 
 const SITE_NAME = () => env("SITE_NAME", "Sawari Travel")
 const SITE_URL = () => env("SITE_URL", "https://sawaritravel.com")
-const LEAD_FORMS = () => env("LEAD_FORMS", "enquiry,trip-plan").split(",").map((f) => f.trim())
+const LEAD_FORMS = () => env("LEAD_FORMS", "enquiry,trip-plan,trip-quiz").split(",").map((f) => f.trim())
 const RATING_RANK: Record<string, number> = { COLD: 0, WARM: 1, HOT: 2 }
 
 type Lead = {
